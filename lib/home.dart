@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
       body: Container(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
+        child: Icon(Icons.edit),
         enableFeedback: true,
       ),
     );
