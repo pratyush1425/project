@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:project/drawer.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("Student Management System"),
       ),
-      drawer: Drawer(),
+      drawer: MyDrawer(),
       body: Container(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
