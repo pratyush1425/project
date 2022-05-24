@@ -11,40 +11,64 @@ class MyDrawer extends StatelessWidget {
       child: ListView(
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
-          const UserAccountsDrawerHeader(
-              accountName: Text("Pratyush"),
-              accountEmail: Text("pratyush1425@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
-              )),
-          const ListTile(
+          UserAccountsDrawerHeader(
+            accountName: Text("Pratyush"),
+            accountEmail: Text("pratyush1425@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
+            ),
+            onDetailsPressed: () {},
+          ),
+          ListTile(
             leading: Icon(
               Icons.person,
               color: Color.fromARGB(255, 38, 33, 171),
             ),
-            title: Text("Account"),
-            subtitle: Text("bhut saara paisa"),
-            trailing: Icon(Icons.edit),
+            title: Text("Profile"),
+            subtitle: Text("student details"),
+            onTap: () {
+              Navigator.pop(context);
+            },
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(
               Icons.details,
               color: Color.fromARGB(255, 38, 33, 171),
             ),
-            title: Text("Details"),
-            subtitle: Text("kuch khaas nhi"),
-            trailing: Icon(Icons.edit),
+            title: Text("Results"),
+            subtitle: Text("kuch pdh liya kro"),
+            onTap: () {},
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(
               Icons.emoji_emotions,
               color: Color.fromARGB(255, 38, 33, 171),
             ),
-            title: Text(" achievements"),
+            title: Text("Attendance"),
             subtitle: Text("nhi bilkul nhi"),
-            trailing: Icon(Icons.edit),
-          )
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.calendar_month,
+              color: Color.fromARGB(255, 38, 33, 171),
+            ),
+            title: Text("Events and Notice"),
+            subtitle: Text("view upcomings here"),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.logout,
+              color: Color.fromARGB(255, 38, 33, 171),
+            ),
+            title: Text("Logout"),
+            subtitle: Text("logout from current device"),
+            onTap: (() {
+              Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+            }),
+          ),
         ],
       ),
     );

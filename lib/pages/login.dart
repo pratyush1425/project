@@ -1,5 +1,3 @@
-// ignore_for_file: unused_label
-
 import 'package:flutter/material.dart';
 import 'package:project/pages/home.dart';
 
@@ -19,7 +17,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 204, 207, 208),
+      // ignore: prefer_const_constructors
+      backgroundColor: Color.fromARGB(255, 233, 236, 237),
       appBar: AppBar(
         title: const Text(
           "MyApp",
@@ -81,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => Home(
-                                      name : _name,
+                                      name: _name,
                                     ),
                                   ));
                             }
