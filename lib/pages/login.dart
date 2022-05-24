@@ -1,6 +1,7 @@
 // ignore_for_file: unused_label
 
 import 'package:flutter/material.dart';
+import 'package:project/pages/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -48,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         onSaved: (value) {
                           _name = value!;
+                          value = "";
                         },
                       ),
                       TextFormField(
@@ -62,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         obscureText: true,
                         onSaved: (value) {
                           _password = value!;
+                          value = "";
                         },
                       ),
                       const SizedBox(height: 25),
@@ -71,11 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
-                            if (_formkey.currentState!.validate()) return;
-
+                            _formkey.currentState!.validate();
                             _formkey.currentState!.save();
-                            debugPrint(_name);
-                            debugPrint(_password);
+
+                            if (_name.isNotEmpty && _password.length > 4) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Home(),
+                                ),
+                              );
+                            }
                           }),
                       TextButton(
                           onPressed: () {},
