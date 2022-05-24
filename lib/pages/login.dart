@@ -1,7 +1,6 @@
 // ignore_for_file: unused_label
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/mydecoration.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -43,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: const InputDecoration(labelText: "Name"),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Name is required";
+                            return "Sorry, we don't entertain people without names :P";
                           }
                           return null;
                         },
@@ -53,10 +52,10 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       TextFormField(
                         decoration:
-                            MyDecoration(),
+                            const InputDecoration(labelText: "Password"),
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Password is required";
+                          if (value!.length <= 4) {
+                            return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
                           }
                           return null;
                         },
@@ -89,6 +88,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
- 
 }
