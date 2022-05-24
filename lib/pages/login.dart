@@ -1,6 +1,7 @@
 // ignore_for_file: unused_label
 
 import 'package:flutter/material.dart';
+import 'package:project/pages/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 204, 207, 208),
       appBar: AppBar(
         title: const Text(
           "MyApp",
@@ -42,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: const InputDecoration(labelText: "Name"),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Name is required";
+                            return "Sorry, we don't entertain people without names :P";
                           }
                           return null;
                         },
@@ -54,8 +56,8 @@ class _LoginPageState extends State<LoginPage> {
                         decoration:
                             const InputDecoration(labelText: "Password"),
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Password is required";
+                          if (value!.length <= 4) {
+                            return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
                           }
                           return null;
                         },
@@ -71,11 +73,18 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           onPressed: () {
-                            if (_formkey.currentState!.validate()) return;
-
+                            _formkey.currentState!.validate();
                             _formkey.currentState!.save();
-                            debugPrint(_name);
-                            debugPrint(_password);
+
+                            if (_name.isNotEmpty && _password.length > 4) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(
+                                      name : _name,
+                                    ),
+                                  ));
+                            }
                           }),
                       TextButton(
                           onPressed: () {},
