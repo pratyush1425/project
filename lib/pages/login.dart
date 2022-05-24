@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 204, 207, 208),
       appBar: AppBar(
         title: const Text(
           "MyApp",
@@ -49,7 +50,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         onSaved: (value) {
                           _name = value!;
-                          value = "";
                         },
                       ),
                       TextFormField(
@@ -64,7 +64,6 @@ class _LoginPageState extends State<LoginPage> {
                         obscureText: true,
                         onSaved: (value) {
                           _password = value!;
-                          value = "";
                         },
                       ),
                       const SizedBox(height: 25),
@@ -79,11 +78,12 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (_name.isNotEmpty && _password.length > 4) {
                               Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const Home(),
-                                ),
-                              );
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(
+                                      name : _name,
+                                    ),
+                                  ));
                             }
                           }),
                       TextButton(
