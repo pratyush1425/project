@@ -40,7 +40,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: const InputDecoration(labelText: "Name"),
+                        decoration: const InputDecoration(
+                            labelText: "Name",
+                            border: OutlineInputBorder(),
+                            hintText: "Enter your username"),
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Sorry, we don't entertain people without names :P";
@@ -52,8 +55,10 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       TextFormField(
-                        decoration:
-                            const InputDecoration(labelText: "Password"),
+                        decoration: const InputDecoration(
+                            labelText: "Password",
+                            border: OutlineInputBorder(),
+                            hintText: "Enter your password"),
                         validator: (value) {
                           if (value!.length <= 4) {
                             return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
