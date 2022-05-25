@@ -9,7 +9,6 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text("Pratyush"),
@@ -29,6 +28,7 @@ class MyDrawer extends StatelessWidget {
             subtitle: Text("student details"),
             onTap: () {
               Navigator.pop(context);
+              Navigator.pushNamed(context, '/home');
             },
           ),
           ListTile(
@@ -38,7 +38,10 @@ class MyDrawer extends StatelessWidget {
             ),
             title: Text("Results"),
             subtitle: Text("kuch pdh liya kro"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/results');
+            },
           ),
           ListTile(
             leading: Icon(
@@ -47,7 +50,10 @@ class MyDrawer extends StatelessWidget {
             ),
             title: Text("Attendance"),
             subtitle: Text("nhi bilkul nhi"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/attendance');
+            },
           ),
           ListTile(
             leading: Icon(
@@ -56,7 +62,10 @@ class MyDrawer extends StatelessWidget {
             ),
             title: Text("Events and Notice"),
             subtitle: Text("view upcomings here"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/event');
+            },
           ),
           ListTile(
             leading: Icon(
