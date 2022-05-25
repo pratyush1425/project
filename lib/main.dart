@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:project/pages/attendance.dart';
+import 'package:project/pages/events.dart';
 import 'package:project/pages/home.dart';
 import 'package:project/pages/login.dart';
+import 'package:project/pages/results.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +22,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
-        '/home': (context) => Home(name: ""),
+        '/home': (context) => Home(name: "again"),
+        '/event': (context) => Events(),
+        '/attendance': (context) => Attendance(),
+        '/results': (context) => Results(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
