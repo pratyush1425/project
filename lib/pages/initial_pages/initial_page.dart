@@ -1,0 +1,56 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+import 'package:project/pages/initial_pages/sign_in.dart';
+import 'package:project/pages/initial_pages/sign_up.dart';
+
+class InitialPage extends StatefulWidget {
+  const InitialPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<InitialPage> createState() => _InitialPageState();
+}
+
+class _InitialPageState extends State<InitialPage> {
+  int currentIndex = 0;
+
+  List pages = [SignInPage(), SignUpPage()];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Student Management System"),
+      ),
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          currentIndex: currentIndex,
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey.withOpacity(0.5),
+          iconSize: 30,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.login,
+                color: Color.fromARGB(255, 38, 33, 171),
+              ),
+              label: "SignIn",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.create,
+                color: Color.fromARGB(255, 38, 33, 171),
+              ),
+              label: "SignUp",
+            ),
+          ]),
+    );
+  }
+}

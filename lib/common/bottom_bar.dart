@@ -1,25 +1,63 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-class MyBottomBar extends StatelessWidget {
+class MyBottomBar extends StatefulWidget {
   const MyBottomBar({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<MyBottomBar> createState() => _MyBottomBarState();
+}
+
+class _MyBottomBarState extends State<MyBottomBar> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  int currentIndex = 0;
+  @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: BottomAppBar(
-        color: Colors.blue,
-        child: Text(
-          "",
-          style: TextStyle(
-            height: 2,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        currentIndex: currentIndex,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey.withOpacity(0.5),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        iconSize: 25,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+            ),
+            label: "Profile",
           ),
-        ),
-      ),
-    );
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.details,
+            ),
+            label: "Results",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.emoji_emotions,
+            ),
+            label: "Attendance",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.calendar_month,
+            ),
+            label: "Events",
+          ),
+        ]);
   }
 }

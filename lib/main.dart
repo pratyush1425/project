@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/attendance.dart';
-import 'package:project/pages/events.dart';
-import 'package:project/pages/home.dart';
-import 'package:project/pages/login.dart';
-import 'package:project/pages/results.dart';
+import 'package:project/pages/attendance_page/attendance.dart';
+import 'package:project/pages/events_page/events.dart';
+import 'package:project/pages/home_page/home.dart';
+import 'package:project/pages/initial_pages/initial_page.dart';
+import 'package:project/pages/initial_pages/sign_in.dart';
+import 'package:project/pages/initial_pages/sign_up.dart';
+import 'package:project/pages/results_page/results.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,18 +23,18 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Project',
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
+        '/': (context) => InitialPage(),
+        '/signup': (context) => SignUpPage(),
+        '/signin': (context) => SignInPage(),
         '/home': (context) => Home(name: "again"),
         '/event': (context) => Events(),
         '/attendance': (context) => Attendance(),
         '/results': (context) => Results(),
       },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
-

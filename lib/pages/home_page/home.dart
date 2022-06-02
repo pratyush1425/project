@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
         child: Icon(Icons.edit),
         enableFeedback: true,
       ),
-      bottomNavigationBar: MyBottomBar(),
+       bottomNavigationBar: MyBottomBar(),
     );
   }
 }

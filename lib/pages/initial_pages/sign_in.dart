@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/home.dart';
+import 'package:project/pages/home_page/home.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignInPageState extends State<SignInPage> {
   String _name = "";
   String _password = "";
 
@@ -16,15 +16,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // ignore: prefer_const_constructors
-      backgroundColor: Color.fromARGB(255, 233, 236, 237),
-      appBar: AppBar(
-        title: const Text(
-          "MyApp",
-        ),
-      ),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(25.0),
         child: SingleChildScrollView(
           child: Column(
@@ -100,14 +92,15 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           }),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Navigator.pushNamed(context, '/signup');
+                          },
                           child: const Text("Create new account"))
                     ],
                   )),
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
