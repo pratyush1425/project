@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Events extends StatelessWidget {
@@ -30,6 +31,7 @@ class Events extends StatelessWidget {
                     ),
                   );
           }),
+          bottomNavigationBar: MyBottomBar(),
     );
   }
 }

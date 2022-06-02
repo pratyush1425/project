@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Home extends StatelessWidget {
@@ -46,6 +47,7 @@ class Home extends StatelessWidget {
         child: Icon(Icons.edit),
         enableFeedback: true,
       ),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }

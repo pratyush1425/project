@@ -1,19 +1,21 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Results extends StatelessWidget {
-  const Results ({Key? key}) : super(key: key);
+  const Results({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Results"),
+        title: Text("Results"),
       ),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: Container(),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }
-
-///// hiii i am me

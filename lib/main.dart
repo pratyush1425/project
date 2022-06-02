@@ -36,6 +36,3 @@ class MyApp extends StatelessWidget {
 }
 
 
-//Changes
-//I am god 😈
-//We are making something big !

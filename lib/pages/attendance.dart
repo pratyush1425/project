@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Attendance extends StatelessWidget {
@@ -8,10 +11,11 @@ class Attendance extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Attendance"),
+        title: Text("Attendance"),
       ),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: Container(),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }
