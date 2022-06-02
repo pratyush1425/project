@@ -31,7 +31,7 @@ class Events extends StatelessWidget {
                     ),
                   );
           }),
-          bottomNavigationBar: MyBottomBar(),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }

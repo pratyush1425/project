@@ -21,11 +21,11 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              Icons.person,
-              color: Color.fromARGB(255, 38, 33, 171),
+              Icons.home,
+              color: Colors.black,
             ),
-            title: Text("Profile"),
-            subtitle: Text("student details"),
+            title: Text("Home"),
+            subtitle: Text("Student Management System"),
             onTap: () {
               Navigator.pop(context);
               Navigator.pushNamed(context, '/home');
@@ -33,8 +33,20 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
+              Icons.person,
+              color: Colors.black,
+            ),
+            title: Text("Profile"),
+            subtitle: Text("student details"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, '/profile');
+            },
+          ),
+          ListTile(
+            leading: Icon(
               Icons.details,
-              color: Color.fromARGB(255, 38, 33, 171),
+              color: Colors.black,
             ),
             title: Text("Results"),
             subtitle: Text("kuch pdh liya kro"),
@@ -46,7 +58,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.emoji_emotions,
-              color: Color.fromARGB(255, 38, 33, 171),
+              color: Colors.black,
             ),
             title: Text("Attendance"),
             subtitle: Text("nhi bilkul nhi"),
@@ -58,7 +70,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.calendar_month,
-              color: Color.fromARGB(255, 38, 33, 171),
+              color: Colors.black,
             ),
             title: Text("Events and Notice"),
             subtitle: Text("view upcomings here"),
@@ -70,7 +82,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(
               Icons.logout,
-              color: Color.fromARGB(255, 38, 33, 171),
+              color: Colors.black,
             ),
             title: Text("Logout"),
             subtitle: Text("logout from current device"),

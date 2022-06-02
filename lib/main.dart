@@ -7,6 +7,7 @@ import 'package:project/pages/home_page/home.dart';
 import 'package:project/pages/initial_pages/initial_page.dart';
 import 'package:project/pages/initial_pages/sign_in.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
+import 'package:project/pages/profile_page/profile.dart';
 import 'package:project/pages/results_page/results.dart';
 
 void main() {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/event': (context) => Events(),
         '/attendance': (context) => Attendance(),
         '/results': (context) => Results(),
+        '/profile': (context) => Profile(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,

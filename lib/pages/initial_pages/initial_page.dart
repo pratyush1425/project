@@ -35,18 +35,19 @@ class _InitialPageState extends State<InitialPage> {
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.grey.withOpacity(0.5),
           iconSize: 30,
+          selectedIconTheme: IconThemeData(size: 35),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.login,
-                color: Color.fromARGB(255, 38, 33, 171),
+                color: Colors.black,
               ),
               label: "SignIn",
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.create,
-                color: Color.fromARGB(255, 38, 33, 171),
+                color: Colors.black,
               ),
               label: "SignUp",
             ),

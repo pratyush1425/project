@@ -31,15 +31,6 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Image(
-              image: NetworkImage(
-                  "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
-              height: 100,
-              alignment: Alignment.topLeft,
-            ),
-          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -47,7 +38,8 @@ class Home extends StatelessWidget {
         child: Icon(Icons.edit),
         enableFeedback: true,
       ),
-       bottomNavigationBar: MyBottomBar(),
+      extendBody: true,
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }
