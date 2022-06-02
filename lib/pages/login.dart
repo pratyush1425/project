@@ -39,36 +39,45 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formkey,
                   child: Column(
                     children: <Widget>[
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: "Name",
-                            border: OutlineInputBorder(),
-                            hintText: "Enter your username"),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Sorry, we don't entertain people without names :P";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _name = value!;
-                        },
+                      const SizedBox(
+                        height: 20,
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: "Password",
-                            border: OutlineInputBorder(),
-                            hintText: "Enter your password"),
-                        validator: (value) {
-                          if (value!.length <= 4) {
-                            return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
-                          }
-                          return null;
-                        },
-                        obscureText: true,
-                        onSaved: (value) {
-                          _password = value!;
-                        },
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: "Name",
+                              border: OutlineInputBorder(),
+                              hintText: "Enter your username"),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Sorry, we don't entertain people without names :P";
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _name = value!;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              labelText: "Password",
+                              border: OutlineInputBorder(),
+                              hintText: "Enter your password"),
+                          validator: (value) {
+                            if (value!.length <= 4) {
+                              return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
+                            }
+                            return null;
+                          },
+                          obscureText: true,
+                          onSaved: (value) {
+                            _password = value!;
+                          },
+                        ),
                       ),
                       const SizedBox(height: 25),
                       ElevatedButton(
