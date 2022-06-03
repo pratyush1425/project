@@ -12,8 +12,11 @@ import 'package:project/pages/payments_page/payments.dart';
 import 'package:project/pages/profile_page/profile.dart';
 import 'package:project/pages/queries_page/queries.dart';
 import 'package:project/pages/results_page/results.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
