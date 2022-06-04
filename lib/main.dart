@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/courses': (context) => Courses(),
         '/payments': (context) => Payments(),
         '/queries': (context) => Queries(),
+        '/initialpage': (context) => InitialPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
