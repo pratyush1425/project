@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => InitialPage(),
         '/signup': (context) => SignUpPage(),
         '/signin': (context) => SignInPage(),
-        '/home': (context) => Home(name: "again"),
+        '/home': (context) => Home(),
         '/event': (context) => Events(),
         '/attendance': (context) => Attendance(),
         '/results': (context) => Results(),
@@ -41,7 +41,6 @@ class MyApp extends StatelessWidget {
         '/courses': (context) => Courses(),
         '/payments': (context) => Payments(),
         '/queries': (context) => Queries(),
-        '/initialpage': (context) => InitialPage(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,

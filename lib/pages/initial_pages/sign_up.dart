@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:project/pages/home_page/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,17 +14,18 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   String _email = "";
   String _password = "";
+  String message = "";
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(25.0),
+      padding: EdgeInsets.all(25.0),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Padding(
+            Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                   "Sign Up",
@@ -32,13 +35,13 @@ class _SignUpPageState extends State<SignUpPage> {
                 key: _formkey,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: TextFormField(
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                             labelText: "Email",
                             border: OutlineInputBorder(),
                             hintText: "Enter your Email"),
@@ -56,9 +59,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: TextFormField(
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                             labelText: "Password",
                             border: OutlineInputBorder(),
                             hintText: "Enter your password"),
@@ -74,9 +77,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 25),
+                    SizedBox(height: 25),
+                    Text(
+                      message,
+                      style: TextStyle(color: Color.fromARGB(255, 209, 30, 17)),
+                    ),
+                    SizedBox(height: 25),
                     ElevatedButton(
-                        child: const Text(
+                        child: Text(
                           "Submit",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -93,12 +101,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Home(
-                                      name: _email,
-                                    ),
+                                    builder: (context) => Home(),
                                   ));
-                            } else {
-                              const Text("Wrong username or password");
                             }
                           }
                         }),
@@ -107,8 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           Navigator.restorablePushNamedAndRemoveUntil(
                               context, '/', (route) => false);
                         },
-                        child:
-                            const Text("Already have an account? Click here"))
+                        child: Text("Already have an account? Click here")),
                   ],
                 )),
           ],
@@ -125,12 +128,18 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        setState(() {
+          message = "The password provided is too weak.";
+        });
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        setState(() {
+          message = "The account already exists for that email.";
+        });
       }
     } catch (e) {
-      print(e);
+      setState(() {
+        message = e.toString();
+      });
     }
   }
 }

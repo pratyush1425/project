@@ -5,8 +5,8 @@ import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Home extends StatelessWidget {
-  final String name;
-  const Home({Key? key, required this.name}) : super(key: key);
+  final String name = "";
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

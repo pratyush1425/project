@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-// import 'package:project/common/bottom_bar.dart';
+import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Profile extends StatelessWidget {
@@ -11,11 +11,11 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var username = "Prabhjot Singh";
-    var no_of_friends = 70;
+    var noOfFriends = 70;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Profile"),
-      // ),
+      appBar: AppBar(
+        title: Text("Profile"),
+      ),
       drawer: MyDrawer(),
       body: Container(
         height: size.height * 0.33,
@@ -36,7 +36,7 @@ class Profile extends StatelessWidget {
                           'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png'),
                     ),
                   )),
-              Text("${username}",
+              Text(username,
                   style: TextStyle(
                       fontSize: 20.0,
                       color: Color.fromARGB(255, 255, 255, 255)))
@@ -55,7 +55,7 @@ class Profile extends StatelessWidget {
                     )),
                     child: Column(children: [
                       Text(
-                        "${no_of_friends}",
+                        "$noOfFriends",
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 25.0,
@@ -91,7 +91,7 @@ class Profile extends StatelessWidget {
           )
         ]),
       ),
-      // bottomNavigationBar: MyBottomBar(),
+      bottomNavigationBar: MyBottomBar(),
     );
   }
 }
