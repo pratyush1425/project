@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/pages/home_page/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String _name = "";
+  String _email = "";
   String _password = "";
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -38,17 +39,19 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration: const InputDecoration(
-                            labelText: "Name",
+                            labelText: "Email",
                             border: OutlineInputBorder(),
-                            hintText: "Enter your username"),
+                            hintText: "Enter your Email"),
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Sorry, we don't entertain people without names :P";
+                          if (value!.isEmpty ||
+                              !value.contains('@') ||
+                              !value.contains('.')) {
+                            return "Please enter correct Email ";
                           }
                           return null;
                         },
                         onSaved: (value) {
-                          _name = value!;
+                          _email = value!;
                         },
                       ),
                     ),
@@ -81,14 +84,22 @@ class _SignUpPageState extends State<SignUpPage> {
                           _formkey.currentState!.validate();
                           _formkey.currentState!.save();
 
-                          if (_name.isNotEmpty && _password.length > 4) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Home(
-                                    name: _name,
-                                  ),
-                                ));
+                          if (_email.isNotEmpty &&
+                              _password.length > 4 &&
+                              _email.contains('@') &&
+                              _email.contains('.')) {
+                            createUser(email: _email, password: _password);
+                            if (FirebaseAuth.instance.currentUser != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Home(
+                                      name: _email,
+                                    ),
+                                  ));
+                            } else {
+                              const Text("Wrong username or password");
+                            }
                           }
                         }),
                     TextButton(
@@ -104,5 +115,22 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+
+  Future createUser({required String email, required String password}) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }
