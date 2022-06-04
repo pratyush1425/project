@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -124,6 +125,7 @@ class MyDrawer extends StatelessWidget {
               title: Text("Logout"),
               subtitle: Text("logout from current device"),
               onTap: (() {
+                signOut();
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/', (route) => false);
               }),
@@ -132,5 +134,9 @@ class MyDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }

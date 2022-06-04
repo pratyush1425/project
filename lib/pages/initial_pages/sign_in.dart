@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/home_page/home.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
@@ -6,13 +7,15 @@ class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignInPage> createState() => SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  String _name = "";
+class SignInPageState extends State<SignInPage> {
+  String _email = "";
   String _password = "";
   bool flag = true;
+  // final AuthService _auth = AuthService();
+  // dynamic auth = FirebaseAuth.instance;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -43,17 +46,19 @@ class _SignInPageState extends State<SignInPage> {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               decoration: const InputDecoration(
-                                  labelText: "Name",
+                                  labelText: "Email",
                                   border: OutlineInputBorder(),
-                                  hintText: "Enter your username"),
+                                  hintText: "Enter your email"),
                               validator: (value) {
-                                if (value!.isEmpty) {
-                                  return "Sorry, we don't entertain people without names :P";
+                                if (value!.isEmpty ||
+                                    !value.contains('@') ||
+                                    !value.contains('.')) {
+                                  return "Please enter correct email";
                                 }
                                 return null;
                               },
                               onSaved: (value) {
-                                _name = value!;
+                                _email = value!;
                               },
                             ),
                           ),
@@ -82,18 +87,28 @@ class _SignInPageState extends State<SignInPage> {
                                 "Submit",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              onPressed: () {
+                              onPressed: () async {
                                 _formkey.currentState!.validate();
                                 _formkey.currentState!.save();
 
-                                if (_name.isNotEmpty && _password.length > 4) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Home(
-                                          name: _name,
-                                        ),
-                                      ));
+                                if (_email.isNotEmpty &&
+                                    _password.length > 4 &&
+                                    _email.contains('@') &&
+                                    _email.contains('.')) {
+                                  await singIn(
+                                      email: _email, password: _password);
+                                  if (FirebaseAuth.instance.currentUser !=
+                                      null) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Home(
+                                            name: _email,
+                                          ),
+                                        ));
+                                  } else {
+                                    const Text("Wrong username or password");
+                                  }
                                 }
                               }),
                           TextButton(
@@ -109,5 +124,21 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
           );
+  }
+
+  Future<void> singIn({required String email, required String password}) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print("No user found for that email.");
+      } else if (e.code == 'wrong-password') {
+        print("Wrong password provided for that user.");
+      }
+      print(e.message);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
