@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -14,6 +15,7 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
+  
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -27,15 +29,32 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>project</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyA-gj5NYy81bELgcxgFbeCA9LR6UU14pJc",
+      authDomain: "flutter-project-1425.firebaseapp.com",
+      databaseURL: "https://flutter-project-1425-default-rtdb.firebaseio.com",
+      projectId: "flutter-project-1425",
+      storageBucket: "flutter-project-1425.appspot.com",
+      messagingSenderId: "141517695894",
+      appId: "1:141517695894:web:77b4446203c486db804bb7",
+      measurementId: "G-SGEXT22JQQ"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
@@ -101,4 +120,5 @@
     }
   </script>
 </body>
+
 </html>

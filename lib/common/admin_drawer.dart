@@ -3,8 +3,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class MyDrawer extends StatelessWidget {
-  const MyDrawer({Key? key}) : super(key: key);
+class AdminDrawer extends StatelessWidget {
+  const AdminDrawer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,8 +13,8 @@ class MyDrawer extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Pratyush"),
-              accountEmail: Text("pratyush1425@gmail.com"),
+              accountName: Text("Admin"),
+              accountEmail: Text("admin@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(
                     "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
@@ -29,7 +30,7 @@ class MyDrawer extends StatelessWidget {
               subtitle: Text("Student Management System"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/admin_home');
               },
             ),
             ListTile(
@@ -41,7 +42,7 @@ class MyDrawer extends StatelessWidget {
               subtitle: Text("student details"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/profile');
+                Navigator.pushNamed(context, '/admin_profile');
               },
             ),
             ListTile(
@@ -50,10 +51,10 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text("Courses"),
-              subtitle: Text("view selected courses here"),
+              subtitle: Text("add courses"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/courses');
+                Navigator.pushNamed(context, '/admin_courses');
               },
             ),
             ListTile(
@@ -62,10 +63,10 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text("Results"),
-              subtitle: Text("View your results here"),
+              subtitle: Text("upload results here"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/results');
+                Navigator.pushNamed(context, '/admin_results');
               },
             ),
             ListTile(
@@ -74,22 +75,10 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text("Attendance"),
-              subtitle: Text("view your attendance here"),
+              subtitle: Text("upload attendance here"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/attendance');
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.calendar_month,
-                color: Colors.black,
-              ),
-              title: Text("Payments and dues"),
-              subtitle: Text("keep your dues clear"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/payments');
+                Navigator.pushNamed(context, '/admin_attendance');
               },
             ),
             ListTile(
@@ -98,10 +87,10 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text("Events and Notice"),
-              subtitle: Text("view upcomings here"),
+              subtitle: Text("add new events and notices"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/event');
+                Navigator.pushNamed(context, '/admin_event');
               },
             ),
             ListTile(
@@ -110,10 +99,10 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.black,
               ),
               title: Text("Complaints and queries"),
-              subtitle: Text("let us help you"),
+              subtitle: Text("view students complaints and queries here"),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/queries');
+                Navigator.pushNamed(context, '/admin_queries');
               },
             ),
             ListTile(

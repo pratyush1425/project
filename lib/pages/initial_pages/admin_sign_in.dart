@@ -2,17 +2,17 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/pages/admin/Home/admin_home.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
-import 'package:project/pages/user/home_page/home.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class AdminSignInPage extends StatefulWidget {
+  const AdminSignInPage({Key? key}) : super(key: key);
 
   @override
-  State<SignInPage> createState() => SignInPageState();
+  State<AdminSignInPage> createState() => AdminSignInPageState();
 }
 
-class SignInPageState extends State<SignInPage> {
+class AdminSignInPageState extends State<AdminSignInPage> {
   String _email = "";
   String _password = "";
   bool flag = true;
@@ -32,7 +32,7 @@ class SignInPageState extends State<SignInPage> {
                   const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        "Sign In",
+                        "Admin Login",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       )),
@@ -51,13 +51,8 @@ class SignInPageState extends State<SignInPage> {
                                 border: OutlineInputBorder(),
                                 hintText: "Enter your email"),
                             validator: (value) {
-                              if (value!.isEmpty ||
-                                  !value.contains('@') ||
-                                  !value.contains('.')) {
+                              if (value != "admin@gmail.com") {
                                 return "Please enter correct email";
-                              }
-                              if (value == "admin@gmail.com") {
-                                return "Go to admin Login";
                               }
                               return null;
                             },
@@ -75,7 +70,7 @@ class SignInPageState extends State<SignInPage> {
                                 hintText: "Enter your password"),
                             validator: (value) {
                               if (value!.length <= 5) {
-                                return "Please enter correct password";
+                                return "Incorrect Password";
                               }
                               return null;
                             },
@@ -101,29 +96,19 @@ class SignInPageState extends State<SignInPage> {
                               _formkey.currentState!.validate();
                               _formkey.currentState!.save();
 
-                              if (_email.isNotEmpty &&
-                                  _password.length > 5 &&
-                                  _email.contains('@') &&
-                                  _email.contains('.') &&
-                                  _email != "admin@gmail.com") {
+                              if (_password.length > 5 &&
+                                  _email == "admin@gmail.com") {
                                 await singIn(
                                     email: _email, password: _password);
                                 if (FirebaseAuth.instance.currentUser != null) {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => Home(),
+                                        builder: (context) => AdminHome(),
                                       ));
                                 }
                               }
                             }),
-                        TextButton(
-                            onPressed: () {
-                              setState(() {
-                                flag = false;
-                              });
-                            },
-                            child: const Text("Create new account")),
                       ],
                     ),
                   ),
@@ -140,11 +125,11 @@ class SignInPageState extends State<SignInPage> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         setState(() {
-          message = "No user found for that email.";
+          message = "No admin found for that email.";
         });
       } else if (e.code == 'wrong-password') {
         setState(() {
-          message = "Wrong password provided for that user.";
+          message = "Wrong password provided for that admin.";
         });
       }
       setState(() {

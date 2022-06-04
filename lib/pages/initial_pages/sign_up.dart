@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/home_page/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:project/pages/user/home_page/home.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -66,8 +66,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             border: OutlineInputBorder(),
                             hintText: "Enter your password"),
                         validator: (value) {
-                          if (value!.length <= 4) {
-                            return "Oops, Your Password is too short \nMake it greater than 4 digits ;)";
+                          if (value!.length <= 5) {
+                            return "Oops, Your Password is too short \nMake it greater than 5 characters ;)";
                           }
                           return null;
                         },
@@ -93,7 +93,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           _formkey.currentState!.save();
 
                           if (_email.isNotEmpty &&
-                              _password.length > 4 &&
+                              _password.length > 5 &&
                               _email.contains('@') &&
                               _email.contains('.')) {
                             createUser(email: _email, password: _password);
