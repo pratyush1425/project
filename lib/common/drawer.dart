@@ -12,11 +12,19 @@ class MyDrawer extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Pratyush"),
-              accountEmail: Text("pratyush1425@gmail.com"),
+              accountName: Text(
+                  (FirebaseAuth.instance.currentUser?.displayName != null)
+                      ? (FirebaseAuth.instance.currentUser?.displayName)
+                          .toString()
+                      : "Update your name in Profile section"),
+              accountEmail:
+                  Text((FirebaseAuth.instance.currentUser?.email).toString()),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
+                backgroundImage: NetworkImage((FirebaseAuth
+                            .instance.currentUser?.photoURL !=
+                        null)
+                    ? (FirebaseAuth.instance.currentUser?.photoURL).toString()
+                    : "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
               ),
               onDetailsPressed: () {},
             ),

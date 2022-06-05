@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Home extends StatelessWidget {
-  final String name = "";
-  const Home({Key? key}) : super(key: key);
+  final String name =
+      (FirebaseAuth.instance.currentUser?.displayName).toString();
+  Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +33,6 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          
-
-
-
         ],
       ),
       floatingActionButton: FloatingActionButton(
