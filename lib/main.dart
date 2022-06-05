@@ -17,6 +17,7 @@ import 'package:project/pages/user/courses_page/courses.dart';
 import 'package:project/pages/user/events_page/events.dart';
 import 'package:project/pages/user/home_page/home.dart';
 import 'package:project/pages/user/payments_page/payments.dart';
+import 'package:project/pages/user/profile_page/edit_profile.dart';
 import 'package:project/pages/user/profile_page/profile.dart';
 import 'package:project/pages/user/queries_page/queries.dart';
 import 'package:project/pages/user/results_page/results.dart';
@@ -25,7 +26,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-  
 }
 
 class MyApp extends StatelessWidget {
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/attendance': (context) => Attendance(),
         '/results': (context) => Results(),
         '/profile': (context) => Profile(),
+        '/edit_profile': (context) => Editprofile(),
         '/courses': (context) => Courses(),
         '/payments': (context) => Payments(),
         '/queries': (context) => Queries(),

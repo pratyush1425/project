@@ -72,7 +72,10 @@ class Profile extends StatelessWidget {
               ),
               Expanded(
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/edit_profile');
+                  },
                   style: OutlinedButton.styleFrom(
                       padding: EdgeInsets.all(5),
                       side: BorderSide(
