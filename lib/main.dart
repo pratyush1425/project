@@ -12,6 +12,7 @@ import 'package:project/pages/initial_pages/initial_page.dart';
 import 'package:project/pages/initial_pages/sign_in.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project/pages/initial_pages/wrapper.dart';
 import 'package:project/pages/user/attendance_page/attendance.dart';
 import 'package:project/pages/user/courses_page/courses.dart';
 import 'package:project/pages/user/events_page/events.dart';
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Project',
-      initialRoute: '/',
+      initialRoute: 'wrapper',
       routes: {
+        'wrapper': (context) => Wrapper(),
         '/': (context) => InitialPage(),
         '/signup': (context) => SignUpPage(),
         '/signin': (context) => SignInPage(),
