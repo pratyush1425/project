@@ -16,6 +16,7 @@ class AdminSignInPageState extends State<AdminSignInPage> {
   String _email = "";
   String _password = "";
   bool flag = true;
+  bool viewPassword = true;
   String message = "";
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -47,6 +48,7 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.email),
                                 labelText: "Email",
                                 border: OutlineInputBorder(),
                                 hintText: "Enter your email"),
@@ -64,17 +66,29 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
-                            decoration: const InputDecoration(
-                                labelText: "Password",
-                                border: OutlineInputBorder(),
-                                hintText: "Enter your password"),
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(Icons.password_outlined),
+                              labelText: "Password",
+                              border: OutlineInputBorder(),
+                              hintText: "Enter your password",
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    viewPassword = !viewPassword;
+                                  });
+                                },
+                                icon: viewPassword
+                                    ? Icon(Icons.visibility)
+                                    : Icon(Icons.visibility_off),
+                              ),
+                            ),
                             validator: (value) {
                               if (value!.length <= 5) {
                                 return "Incorrect Password";
                               }
                               return null;
                             },
-                            obscureText: true,
+                            obscureText: viewPassword,
                             onSaved: (value) {
                               _password = value!;
                             },

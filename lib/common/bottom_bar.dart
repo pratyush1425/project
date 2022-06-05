@@ -22,9 +22,7 @@ class _MyBottomBarState extends State<MyBottomBar> {
   @override
   Widget build(BuildContext context) {
     return CurvedNavigationBar(
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Color.fromARGB(255, 137, 154, 163),
-        color: Color.fromARGB(255, 174, 188, 194),
+        backgroundColor: Color.fromARGB(255, 227, 234, 238),
         onTap: (index) {
           setState(() {
             currentIndex = index;

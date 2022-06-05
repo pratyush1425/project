@@ -16,6 +16,7 @@ class SignInPageState extends State<SignInPage> {
   String _email = "";
   String _password = "";
   bool flag = true;
+  bool viewPassword = true;
   String message = "";
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -47,6 +48,7 @@ class SignInPageState extends State<SignInPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.email),
                                 labelText: "Email",
                                 border: OutlineInputBorder(),
                                 hintText: "Enter your email"),
@@ -69,8 +71,19 @@ class SignInPageState extends State<SignInPage> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.password_outlined),
                                 labelText: "Password",
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      viewPassword = !viewPassword;
+                                    });
+                                  },
+                                  icon: viewPassword
+                                      ? Icon(Icons.visibility)
+                                      : Icon(Icons.visibility_off),
+                                ),
                                 border: OutlineInputBorder(),
                                 hintText: "Enter your password"),
                             validator: (value) {
@@ -79,7 +92,7 @@ class SignInPageState extends State<SignInPage> {
                               }
                               return null;
                             },
-                            obscureText: true,
+                            obscureText: viewPassword,
                             onSaved: (value) {
                               _password = value!;
                             },

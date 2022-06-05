@@ -15,6 +15,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String _email = "";
   String _password = "";
   String message = "";
+  bool viewPassword = true;
 
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
@@ -42,6 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
                             labelText: "Email",
                             border: OutlineInputBorder(),
                             hintText: "Enter your Email"),
@@ -62,16 +64,27 @@ class _SignUpPageState extends State<SignUpPage> {
                       padding: EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration: InputDecoration(
-                            labelText: "Password",
-                            border: OutlineInputBorder(),
-                            hintText: "Enter your password"),
+                          prefixIcon: Icon(Icons.password),
+                          labelText: "Password",
+                          border: OutlineInputBorder(),
+                          hintText: "Enter your password",
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  viewPassword = !viewPassword;
+                                });
+                              },
+                              icon: viewPassword
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off)),
+                        ),
                         validator: (value) {
                           if (value!.length <= 5) {
                             return "Oops, Your Password is too short \nMake it greater than 5 characters ;)";
                           }
                           return null;
                         },
-                        obscureText: true,
+                        obscureText: viewPassword,
                         onSaved: (value) {
                           _password = value!;
                         },

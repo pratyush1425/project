@@ -63,6 +63,8 @@ class MyApp extends StatelessWidget {
       },
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Color.fromARGB(255, 227, 234, 238),
+        
       ),
       debugShowCheckedModeBanner: false,
     );
