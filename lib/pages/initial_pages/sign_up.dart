@@ -26,10 +26,13 @@ class _SignUpPageState extends State<SignUpPage> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
+            Image(
+                image: NetworkImage(
+                    "https://cdn4.iconfinder.com/data/icons/library-glyph/64/Library__Library_Book_Open_Reading_Newspaper-512.png")),
+            const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  "Sign Up",
+                  "Student Signup",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )),
             Form(
@@ -98,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(height: 25),
                     ElevatedButton(
                         child: Text(
-                          "Submit",
+                          "Sign Up",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {

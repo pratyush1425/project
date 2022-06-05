@@ -11,8 +11,6 @@ class Editprofile extends StatefulWidget {
 }
 
 class _EditprofileState extends State<Editprofile> {
-  String _email = "";
-  String _password = "";
   bool flag = true;
   String message = "";
 
@@ -63,9 +61,7 @@ class _EditprofileState extends State<Editprofile> {
                           }
                           return null;
                         },
-                        onSaved: (value) {
-                          _email = value!;
-                        },
+                        onSaved: (value) {},
                       ),
                     ),
                     Padding(
@@ -78,9 +74,7 @@ class _EditprofileState extends State<Editprofile> {
                         validator: (value) {
                           return null;
                         },
-                        onSaved: (value) {
-                          _password = value!;
-                        },
+                        onSaved: (value) {},
                       ),
                     ),
                     const SizedBox(height: 25),

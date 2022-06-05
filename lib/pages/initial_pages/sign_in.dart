@@ -30,10 +30,13 @@ class SignInPageState extends State<SignInPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  Image(
+                      image: NetworkImage(
+                          "https://cdn4.iconfinder.com/data/icons/library-glyph/64/Library__Library_Book_Open_Reading_Newspaper-512.png")),
                   const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
-                        "Sign In",
+                        "Student Login",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       )),
@@ -107,7 +110,7 @@ class SignInPageState extends State<SignInPage> {
                         const SizedBox(height: 25),
                         ElevatedButton(
                             child: const Text(
-                              "Submit",
+                              "Sign In",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             onPressed: () async {

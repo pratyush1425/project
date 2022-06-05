@@ -30,6 +30,9 @@ class AdminSignInPageState extends State<AdminSignInPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  Image(
+                      image: NetworkImage(
+                          "https://th.bing.com/th/id/R.1846ff77261b4570d312d887e1208094?rik=1mCkqqg9gQJpMg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2freading-silhouette%2freading-silhouette-16.png&ehk=KcKpLbtz8ph%2fW7xI8vUv6z5349q9knWsAO0wiuNklPU%3d&risl=&pid=ImgRaw&r=0")),
                   const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
@@ -103,7 +106,7 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                         const SizedBox(height: 25),
                         ElevatedButton(
                             child: const Text(
-                              "Submit",
+                              "Sign In",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             onPressed: () async {
