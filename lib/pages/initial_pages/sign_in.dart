@@ -25,22 +25,77 @@ class SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return flag == false
         ? const SignUpPage()
-        : Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Image(
-                      image: NetworkImage(
-                          "https://cdn4.iconfinder.com/data/icons/library-glyph/64/Library__Library_Book_Open_Reading_Newspaper-512.png")),
-                  const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Student Login",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      )),
-                  Form(
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 350,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/background.png'),
+                          fit: BoxFit.fill)),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        left: 30,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/light-1.png'))),
+                        ),
+                      ),
+                      Positioned(
+                        left: 140,
+                        width: 80,
+                        height: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/light-2.png'))),
+                        ),
+                      ),
+                      Positioned(
+                        right: 40,
+                        top: 40,
+                        width: 80,
+                        height: 50,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/clock.png'))),
+                        ),
+                      ),
+                      Positioned(
+                          child: Container(
+                        margin: EdgeInsets.only(top: 50),
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ))
+                    ],
+                  ),
+                ),
+                // const Padding(
+                //     padding: EdgeInsets.all(8.0),
+                //     child: Text(
+                //       "Student Login",
+                //       style:
+                //           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                //     )),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Form(
                     key: _formkey,
                     child: Column(
                       children: <Widget>[
@@ -109,30 +164,30 @@ class SignInPageState extends State<SignInPage> {
                         ),
                         const SizedBox(height: 25),
                         ElevatedButton(
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () async {
-                              _formkey.currentState!.validate();
-                              _formkey.currentState!.save();
+                          child: const Text(
+                            "             Sign In             ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () async {
+                            _formkey.currentState!.validate();
+                            _formkey.currentState!.save();
 
-                              if (_email.isNotEmpty &&
-                                  _password.length > 5 &&
-                                  _email.contains('@') &&
-                                  _email.contains('.') &&
-                                  _email != "admin@gmail.com") {
-                                await singIn(
-                                    email: _email, password: _password);
-                                if (FirebaseAuth.instance.currentUser != null) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Home(),
-                                      ));
-                                }
+                            if (_email.isNotEmpty &&
+                                _password.length > 5 &&
+                                _email.contains('@') &&
+                                _email.contains('.') &&
+                                _email != "admin@gmail.com") {
+                              await singIn(email: _email, password: _password);
+                              if (FirebaseAuth.instance.currentUser != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Home(),
+                                    ));
                               }
-                            }),
+                            }
+                          },
+                        ),
                         TextButton(
                             onPressed: () {
                               setState(() {
@@ -143,8 +198,8 @@ class SignInPageState extends State<SignInPage> {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
   }

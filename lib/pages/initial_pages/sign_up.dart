@@ -21,21 +21,25 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(25.0),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image(
-                image: NetworkImage(
-                    "https://cdn4.iconfinder.com/data/icons/library-glyph/64/Library__Library_Book_Open_Reading_Newspaper-512.png")),
-            const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Student Signup",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )),
-            Form(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            height: 300,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/background.png'),
+                    fit: BoxFit.fill)),
+          ),
+          const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Student Signup",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              )),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Form(
                 key: _formkey,
                 child: Column(
                   children: <Widget>[
@@ -101,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     SizedBox(height: 25),
                     ElevatedButton(
                         child: Text(
-                          "Sign Up",
+                          "             Sign Up             ",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         onPressed: () {
@@ -130,8 +134,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Text("Already have an account? Click here")),
                   ],
                 )),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

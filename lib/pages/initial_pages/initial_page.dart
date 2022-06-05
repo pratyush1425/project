@@ -25,6 +25,7 @@ class _InitialPageState extends State<InitialPage> {
       child: Scaffold(
         body: pages[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Color.fromARGB(255, 152, 134, 253),
             onTap: (index) {
               setState(() {
                 currentIndex = index;
@@ -34,11 +35,11 @@ class _InitialPageState extends State<InitialPage> {
             selectedItemColor: Colors.black,
             unselectedItemColor: Colors.grey.withOpacity(0.5),
             iconSize: 30,
-            selectedIconTheme: IconThemeData(size: 35),
+            selectedIconTheme: IconThemeData(size: 40),
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.login,
+                  Icons.school,
                   color: Colors.black,
                 ),
                 label: "SignIn",
