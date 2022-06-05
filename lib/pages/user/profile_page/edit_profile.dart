@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:project/common/bottom_bar.dart';
 import 'package:project/common/drawer.dart';
 
 class Editprofile extends StatefulWidget {
@@ -35,7 +34,7 @@ class _EditprofileState extends State<Editprofile> {
               const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Sign In",
+                    "EDIT PROFILE",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )),
               Form(
@@ -49,9 +48,13 @@ class _EditprofileState extends State<Editprofile> {
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration: const InputDecoration(
-                            labelText: "Email",
-                            border: OutlineInputBorder(),
-                            hintText: "Enter your email"),
+                          labelText: "Email",
+                          labelStyle: TextStyle(
+                            fontSize: 20,
+                          ),
+                          // border: OutlineInputBorder(),
+                          // hintText: "Edit your email"
+                        ),
                         validator: (value) {
                           if (value!.isEmpty ||
                               !value.contains('@') ||
@@ -102,7 +105,6 @@ class _EditprofileState extends State<Editprofile> {
           ),
         ),
       ),
-      bottomNavigationBar: MyBottomBar(),
     );
   }
 }
