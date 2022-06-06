@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:project/firebase_options.dart';
 import 'package:project/pages/admin/Attendance/admin_attendance.dart';
 import 'package:project/pages/admin/Courses/admin_courses.dart';
 import 'package:project/pages/admin/Events/admin_events.dart';
@@ -25,7 +26,9 @@ import 'package:project/pages/user/results_page/results.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
