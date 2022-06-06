@@ -75,7 +75,7 @@ class SignInPageState extends State<SignInPage> {
                         margin: EdgeInsets.only(top: 50),
                         child: Center(
                           child: Text(
-                            "Login",
+                            "SIGN IN",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 40,
@@ -86,13 +86,6 @@ class SignInPageState extends State<SignInPage> {
                     ],
                   ),
                 ),
-                // const Padding(
-                //     padding: EdgeInsets.all(8.0),
-                //     child: Text(
-                //       "Student Login",
-                //       style:
-                //           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                //     )),
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Form(

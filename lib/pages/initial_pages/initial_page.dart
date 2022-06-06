@@ -25,36 +25,44 @@ class _InitialPageState extends State<InitialPage> {
       child: Scaffold(
         body: pages[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Color.fromARGB(255, 152, 134, 253),
+            elevation: 0,
+            enableFeedback: true,
+            backgroundColor: Color.fromARGB(255, 227, 234, 238),
+            selectedItemColor: Color.fromARGB(255, 140, 120, 255),
+            unselectedItemColor: Colors.grey,
             onTap: (index) {
               setState(() {
                 currentIndex = index;
               });
             },
             currentIndex: currentIndex,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.grey.withOpacity(0.5),
             iconSize: 30,
             selectedIconTheme: IconThemeData(size: 40),
-            items: const [
+            items: [
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.school,
-                  color: Colors.black,
+                  color: currentIndex == 0
+                      ? Color.fromARGB(255, 140, 120, 255)
+                      : Colors.grey,
                 ),
                 label: "SignIn",
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.create,
-                  color: Colors.black,
+                  color: currentIndex == 1
+                      ? Color.fromARGB(255, 140, 120, 255)
+                      : Colors.grey,
                 ),
                 label: "SignUp",
               ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.admin_panel_settings,
-                  color: Colors.black,
+                  color: currentIndex == 2
+                      ? Color.fromARGB(255, 140, 120, 255)
+                      : Colors.grey,
                 ),
                 label: "Admin Login",
               ),
