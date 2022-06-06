@@ -12,29 +12,16 @@ class AdminHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Student Management System"),
+        title: Text(
+          "Welcome " + name,
+        ),
       ),
       drawer: AdminDrawer(),
       body: ListView(
-        children: [
+        children: const [
           SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-                child: Text(
-              "Welcome " + name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            )),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          
-
-
-
         ],
       ),
       floatingActionButton: FloatingActionButton(

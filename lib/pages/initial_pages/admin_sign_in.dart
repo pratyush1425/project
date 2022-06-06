@@ -25,22 +25,70 @@ class AdminSignInPageState extends State<AdminSignInPage> {
   Widget build(BuildContext context) {
     return flag == false
         ? const SignUpPage()
-        : Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Image(
-                      image: NetworkImage(
-                          "https://th.bing.com/th/id/R.1846ff77261b4570d312d887e1208094?rik=1mCkqqg9gQJpMg&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2freading-silhouette%2freading-silhouette-16.png&ehk=KcKpLbtz8ph%2fW7xI8vUv6z5349q9knWsAO0wiuNklPU%3d&risl=&pid=ImgRaw&r=0")),
-                  const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Admin Login",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      )),
-                  Form(
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 350,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/images/background.png'),
+                          fit: BoxFit.fill)),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        left: 30,
+                        width: 80,
+                        height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage('assets/images/light-1.png'),
+                          )),
+                        ),
+                      ),
+                      Positioned(
+                        left: 140,
+                        width: 80,
+                        height: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/light-2.png'))),
+                        ),
+                      ),
+                      Positioned(
+                        right: 40,
+                        top: 40,
+                        width: 80,
+                        height: 50,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/clock.png'))),
+                        ),
+                      ),
+                      Positioned(
+                          child: Container(
+                        margin: EdgeInsets.only(top: 50),
+                        child: Center(
+                          child: Text(
+                            "ADMIN LOGIN",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ))
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Form(
                     key: _formkey,
                     child: Column(
                       children: <Widget>[
@@ -106,7 +154,7 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                         const SizedBox(height: 25),
                         ElevatedButton(
                             child: const Text(
-                              "Sign In",
+                              "             Sign In             ",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             onPressed: () async {
@@ -129,8 +177,8 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
   }

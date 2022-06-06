@@ -16,10 +16,12 @@ class AdminProfile extends StatelessWidget {
       appBar: AppBar(
         title: Text("Profile"),
       ),
+
       drawer: AdminDrawer(),
+      // ignore: sized_box_for_whitespace
       body: Container(
         height: size.height * 0.33,
-        color: Color.fromRGBO(79, 147, 255, 1),
+        // color: Color.fromRGBO(79, 147, 255, 1),
         child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
           Column(
             children: [
@@ -29,7 +31,7 @@ class AdminProfile extends StatelessWidget {
                   decoration: BoxDecoration(
                     border:
                         Border.all(color: Color.fromARGB(255, 255, 255, 255)),
-                    color: Color.fromARGB(255, 254, 254, 254),
+                    color: Colors.black,
                     shape: BoxShape.circle,
                     image: DecorationImage(
                       image: NetworkImage(
@@ -37,9 +39,7 @@ class AdminProfile extends StatelessWidget {
                     ),
                   )),
               Text(username,
-                  style: TextStyle(
-                      fontSize: 20.0,
-                      color: Color.fromARGB(255, 255, 255, 255)))
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
             ],
           ),
           SizedBox(height: 25),
@@ -57,16 +57,16 @@ class AdminProfile extends StatelessWidget {
                       Text(
                         "$noOfFriends",
                         style: TextStyle(
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.bold,
                             fontSize: 25.0,
-                            color: Color.fromARGB(255, 255, 255, 255)),
+                            color: Colors.black),
                       ),
                       Text(
                         "Following",
                         style: TextStyle(
-                            fontWeight: FontWeight.w300,
+                            fontWeight: FontWeight.bold,
                             fontSize: 20.0,
-                            color: Color.fromARGB(255, 255, 255, 255)),
+                            color: Colors.black),
                       )
                     ])),
               ),
@@ -82,8 +82,8 @@ class AdminProfile extends StatelessWidget {
                     "EDIT PROFILE",
                     style: TextStyle(
                         fontSize: 20.0,
-                        fontWeight: FontWeight.w300,
-                        color: Color.fromARGB(255, 255, 255, 255)),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ),
               ),

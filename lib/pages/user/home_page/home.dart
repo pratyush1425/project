@@ -13,23 +13,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("Student Management System"),
+        title: Text("Welcome " + name),
       ),
       drawer: MyDrawer(),
       body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-                child: Text(
-              "Welcome " + name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            )),
-          ),
+        children: const [
           SizedBox(
             height: 20,
           ),
