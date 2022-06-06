@@ -11,7 +11,6 @@ class EditProfile extends StatefulWidget {
 }
 
 class Editprofile extends State<EditProfile> {
-  
   bool showPassword = true;
   var name = FirebaseAuth.instance.currentUser?.displayName ??
       "Please update your name";
@@ -26,7 +25,6 @@ class Editprofile extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-
 //     if (FirebaseAuth.instance.currentUser != null) {
 //     for (final providerProfile in FirebaseAuth.instance.currentUser!.providerData) {
 //         // ID of the provider (google.com, apple.cpm, etc.)
@@ -191,9 +189,9 @@ class Editprofile extends State<EditProfile> {
 
   Widget buildTextField(labelText, placeholder, isPasswordTextField) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
+      padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
       child: TextField(
-        controller: placeholder,
+        // controller: placeholder,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
