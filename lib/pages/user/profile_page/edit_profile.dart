@@ -1,109 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:project/common/drawer.dart';
+// ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
-// class Editprofile extends StatefulWidget {
-//   const Editprofile({Key? key}) : super(key: key);
-
-//   @override
-//   State<Editprofile> createState() => _EditprofileState();
-// }
-
-// class _EditprofileState extends State<Editprofile> {
-//   bool flag = true;
-//   String message = "";
-
-//   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-
-// ignore_for_file: prefer_const_constructors
-
-//   @override
-//   Widget build(BuildContext context) {
-//     //double screenWidth = MediaQuery.of(context).size.width;
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Edit Profile"),
-//       ),
-//       drawer: MyDrawer(),
-//       body: Padding(
-//         padding: const EdgeInsets.all(25.0),
-//         child: SingleChildScrollView(
-//           child: Column(
-//             children: [
-//               const Padding(
-//                   padding: EdgeInsets.all(8.0),
-//                   child: Text(
-//                     "EDIT PROFILE",
-//                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                   )),
-//               Form(
-//                 key: _formkey,
-//                 child: Column(
-//                   children: <Widget>[
-//                     const SizedBox(
-//                       height: 20,
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.all(8.0),
-//                       child: TextFormField(
-//                         decoration: const InputDecoration(
-//                           labelText: "Email",
-//                           labelStyle: TextStyle(
-//                             fontSize: 20,
-//                           ),
-//                           // border: OutlineInputBorder(),
-//                           // hintText: "Edit your email"
-//                         ),
-//                         validator: (value) {
-//                           if (value!.isEmpty ||
-//                               !value.contains('@') ||
-//                               !value.contains('.')) {
-//                             return "Please enter correct email";
-//                           }
-//                           return null;
-//                         },
-//                         onSaved: (value) {},
-//                       ),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.all(8.0),
-//                       child: TextFormField(
-//                         decoration: const InputDecoration(
-//                             labelText: "Name",
-//                             border: OutlineInputBorder(),
-//                             hintText: "Enter your name"),
-//                         validator: (value) {
-//                           return null;
-//                         },
-//                         onSaved: (value) {},
-//                       ),
-//                     ),
-//                     const SizedBox(height: 25),
-//                     Text(
-//                       message,
-//                       style: TextStyle(color: Color.fromARGB(255, 209, 30, 17)),
-//                     ),
-//                     const SizedBox(height: 25),
-//                     ElevatedButton(
-//                         child: const Text(
-//                           "Submit",
-//                           style: TextStyle(fontWeight: FontWeight.bold),
-//                         ),
-//                         onPressed: () async {
-//                           _formkey.currentState!.validate();
-//                           _formkey.currentState!.save();
-//                         }),
-//                   ],
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
-// import 'package:project/common/drawer.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -112,41 +9,37 @@ class EditProfile extends StatefulWidget {
 
 class Editprofile extends State<EditProfile> {
   bool showPassword = false;
+  var name = "Pratyush Kumar";
+  var email = "pratyush@gmail.com";
+  var password = "********";
+  var phone = "9212959354";
+  var address = "DTU, Delhi";
+
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Color.fromARGB(255, 76, 165, 175),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, '/profile');
+          },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {},
-          ),
-        ],
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        padding: EdgeInsets.only(top: 12),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
           },
           child: ListView(
             children: [
-              Text(
-                "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              ),
               SizedBox(
                 height: 15,
               ),
@@ -154,24 +47,24 @@ class Editprofile extends State<EditProfile> {
                 child: Stack(
                   children: [
                     Container(
-                      width: 130,
-                      height: 130,
+                      width: 140,
+                      height: 140,
                       decoration: BoxDecoration(
                           border: Border.all(
                               width: 4,
                               color: Theme.of(context).scaffoldBackgroundColor),
                           boxShadow: [
                             BoxShadow(
-                                spreadRadius: 2,
+                                spreadRadius: 1,
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
+                                color: Colors.black.withOpacity(0.3),
+                                offset: Offset(0, 5))
                           ],
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                                "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg",
                               ))),
                     ),
                     Positioned(
@@ -186,7 +79,7 @@ class Editprofile extends State<EditProfile> {
                               width: 4,
                               color: Theme.of(context).scaffoldBackgroundColor,
                             ),
-                            color: Colors.green,
+                            color: Color.fromARGB(255, 76, 165, 175),
                           ),
                           child: Icon(
                             Icons.edit,
@@ -199,44 +92,60 @@ class Editprofile extends State<EditProfile> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "Dor Alex", false),
-              buildTextField("E-mail", "alexd@gmail.com", false),
-              buildTextField("Password", "********", true),
-              buildTextField("Location", "TLV, Israel", false),
+              buildTextField("Full Name", "${name}", false),
+              buildTextField("E-mail", "${email}", false),
+              buildTextField("Password", "${password}", true),
+              buildTextField("Phone", "${phone}", false),
+              buildTextField("Address", "${address}", false),
               SizedBox(
                 height: 35,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  OutlinedButton(
-                    // padding: EdgeInsets.symmetric(horizontal: 50),
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(20)),
-                    onPressed: () {},
-                    child: Text("CANCEL",
+                  Container(
+                    margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                    width: 120,
+                    height: 40,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        )),
+                      ),
+                      child: Text("CANCEL",
+                          style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 2.2,
+                              color: Colors.black)),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                    width: 120,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        )),
+                      ),
+                      child: Text(
+                        "SAVE",
                         style: TextStyle(
                             fontSize: 14,
                             letterSpacing: 2.2,
-                            color: Colors.black)),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    // color: Colors.green,
-                    // padding: EdgeInsets.symmetric(horizontal: 50),
-                    // elevation: 2,
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "SAVE",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
+                            color: Colors.white),
+                      ),
                     ),
                   )
                 ],
-              )
+              ),
+              SizedBox(
+                height: 35,
+              ),
             ],
           ),
         ),
@@ -247,7 +156,7 @@ class Editprofile extends State<EditProfile> {
   Widget buildTextField(
       String labelText, String placeholder, bool isPasswordTextField) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
+      padding: const EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
       child: TextField(
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
@@ -271,7 +180,7 @@ class Editprofile extends State<EditProfile> {
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: Color.fromARGB(255, 75, 75, 75),
             )),
       ),
     );
