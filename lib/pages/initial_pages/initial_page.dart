@@ -21,53 +21,55 @@ class _InitialPageState extends State<InitialPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: pages[currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-            elevation: 0,
-            enableFeedback: true,
-            backgroundColor: Color.fromARGB(255, 227, 234, 238),
-            selectedItemColor: Color.fromARGB(255, 140, 120, 255),
-            unselectedItemColor: Colors.grey,
-            onTap: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            currentIndex: currentIndex,
-            iconSize: 30,
-            selectedIconTheme: IconThemeData(size: 40),
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.school,
-                  color: currentIndex == 0
-                      ? Color.fromARGB(255, 140, 120, 255)
-                      : Colors.grey,
-                ),
-                label: "SignIn",
+    return Scaffold(
+      // extendBody: true,
+      // resizeToAvoidBottomInset: true,
+      // persistentFooterButtons: [],
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          enableFeedback: true,
+          backgroundColor: Color.fromARGB(255, 227, 234, 238),
+          selectedItemColor: Color.fromARGB(255, 140, 120, 255),
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+          unselectedItemColor: Colors.grey,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          currentIndex: currentIndex,
+          iconSize: 30,
+          selectedIconTheme: IconThemeData(size: 40),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.school,
+                color: currentIndex == 0
+                    ? Color.fromARGB(255, 140, 120, 255)
+                    : Colors.grey,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.create,
-                  color: currentIndex == 1
-                      ? Color.fromARGB(255, 140, 120, 255)
-                      : Colors.grey,
-                ),
-                label: "SignUp",
+              label: "SignIn",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.create,
+                color: currentIndex == 1
+                    ? Color.fromARGB(255, 140, 120, 255)
+                    : Colors.grey,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.admin_panel_settings,
-                  color: currentIndex == 2
-                      ? Color.fromARGB(255, 140, 120, 255)
-                      : Colors.grey,
-                ),
-                label: "Admin Login",
+              label: "SignUp",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.admin_panel_settings,
+                color: currentIndex == 2
+                    ? Color.fromARGB(255, 140, 120, 255)
+                    : Colors.grey,
               ),
-            ]),
-      ),
+              label: "Admin Login",
+            ),
+          ]),
     );
   }
 }

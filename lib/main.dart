@@ -62,17 +62,19 @@ class MyApp extends StatelessWidget {
         '/admin_queries': (context) => AdminQueries(),
       },
       theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          scaffoldBackgroundColor: Color.fromARGB(255, 227, 234, 238),
-          appBarTheme: AppBarTheme(
-            color: Color.fromARGB(255, 227, 234, 238),
-            titleTextStyle: TextStyle(
-                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-            elevation: 0.0,
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
-          )),
+        primarySwatch: Colors.blueGrey,
+        scaffoldBackgroundColor: Color.fromARGB(255, 227, 234, 238),
+        appBarTheme: AppBarTheme(
+          color: Color.fromARGB(255, 227, 234, 238),
+          titleTextStyle: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          elevation: 0.0,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
+        //textTheme: TextTheme(bodyText1: TextStyle(color: Colors.black)),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
