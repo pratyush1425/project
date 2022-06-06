@@ -1,3 +1,8 @@
+
+// firebase auth:import users.json --hash-algo=scrypt --rounds=8 --mem-cost=14
+
+
+
 // To parse this JSON data, do
 //
 //     final user = userFromJson(jsonString);

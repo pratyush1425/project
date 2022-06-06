@@ -1,23 +1,47 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class EditProfile extends StatefulWidget {
+  const EditProfile({Key? key}) : super(key: key);
+
   @override
   Editprofile createState() => Editprofile();
 }
 
 class Editprofile extends State<EditProfile> {
-  bool showPassword = false;
-  var name = "Pratyush Kumar";
-  var email = "pratyush@gmail.com";
-  var password = "********";
-  var phone = "9212959354";
+  
+  bool showPassword = true;
+  var name = FirebaseAuth.instance.currentUser?.displayName ??
+      "Please update your name";
+  var email = FirebaseAuth.instance.currentUser?.email;
+  var password = "";
+  var phone = FirebaseAuth.instance.currentUser?.phoneNumber ??
+      "Please enter your phone number";
+  var photourl = FirebaseAuth.instance.currentUser?.photoURL ??
+      "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg";
+
   var address = "DTU, Delhi";
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width;
+
+//     if (FirebaseAuth.instance.currentUser != null) {
+//     for (final providerProfile in FirebaseAuth.instance.currentUser!.providerData) {
+//         // ID of the provider (google.com, apple.cpm, etc.)
+//         final provider = providerProfile.providerId;
+
+//         // UID specific to the provider
+//         final uid = providerProfile.uid;
+
+//         // Name, email address, and profile photo URL
+//         final name = providerProfile.displayName;
+//         final emailAddress = providerProfile.email;
+//         final profilePhoto = providerProfile.photoURL;
+//     }
+// }
+    // var size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -64,7 +88,7 @@ class Editprofile extends State<EditProfile> {
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg",
+                                photourl,
                               ))),
                     ),
                     Positioned(
@@ -92,11 +116,11 @@ class Editprofile extends State<EditProfile> {
               SizedBox(
                 height: 35,
               ),
-              buildTextField("Full Name", "${name}", false),
-              buildTextField("E-mail", "${email}", false),
-              buildTextField("Password", "${password}", true),
-              buildTextField("Phone", "${phone}", false),
-              buildTextField("Address", "${address}", false),
+              buildTextField("Full Name", name, false),
+              buildTextField("E-mail", email, false),
+              buildTextField("Password", password, true),
+              buildTextField("Phone", phone, false),
+              buildTextField("Address", address, false),
               SizedBox(
                 height: 35,
               ),
@@ -104,21 +128,26 @@ class Editprofile extends State<EditProfile> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                    margin: EdgeInsets.fromLTRB(14, 0, 0, 0),
                     width: 120,
                     height: 40,
-                    child: OutlinedButton(
-                      onPressed: () {},
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(context, '/edit_profile');
+                      },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
                         )),
                       ),
-                      child: Text("CANCEL",
-                          style: TextStyle(
-                              fontSize: 14,
-                              letterSpacing: 2.2,
-                              color: Colors.black)),
+                      child: Text(
+                        "CANCEL",
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 2.2,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                   Container(
@@ -126,7 +155,14 @@ class Editprofile extends State<EditProfile> {
                     width: 120,
                     height: 40,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // await FirebaseAuth.instance.currentUser?.updateDisplayName("Jane Q. User");
+                        // await FirebaseAuth.instance.currentUser?.updateEmail("janeq@example.com");
+                        // await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+                        // await FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneCredential);
+                        // await FirebaseAuth.instance.currentUser?.verifyBeforeUpdateEmail(newEmail);
+                        //
+                      },
                       style: ButtonStyle(
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -153,11 +189,11 @@ class Editprofile extends State<EditProfile> {
     );
   }
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+  Widget buildTextField(labelText, placeholder, isPasswordTextField) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
       child: TextField(
+        controller: placeholder,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
@@ -167,10 +203,9 @@ class Editprofile extends State<EditProfile> {
                         showPassword = !showPassword;
                       });
                     },
-                    icon: Icon(
-                      Icons.remove_red_eye,
-                      color: Colors.grey,
-                    ),
+                    icon: showPassword
+                        ? Icon(Icons.visibility)
+                        : Icon(Icons.visibility_off),
                   )
                 : null,
             contentPadding: EdgeInsets.only(bottom: 3),
