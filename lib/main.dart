@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         '/attendance': (context) => Attendance(),
         '/results': (context) => Results(),
         '/profile': (context) => Profile(),
-        '/edit_profile': (context) => Editprofile(),
+        '/edit_profile': (context) => EditProfile(),
         '/courses': (context) => Courses(),
         '/payments': (context) => Payments(),
         '/queries': (context) => Queries(),
