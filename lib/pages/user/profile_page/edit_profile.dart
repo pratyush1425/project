@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
-
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
 
@@ -23,7 +22,8 @@ class Editprofile extends State<EditProfile> {
 
   @override
   Widget build(BuildContext context) {
-    // var size = MediaQuery.of(context).size.width;
+    var size = MediaQuery.of(context).size.width;
+    var h = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -39,7 +39,6 @@ class Editprofile extends State<EditProfile> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 12),
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -53,29 +52,44 @@ class Editprofile extends State<EditProfile> {
                 child: Stack(
                   children: [
                     Container(
-                      width: 140,
-                      height: 140,
+                      width: size,
+                      height: 200,
                       decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 4,
-                              color: Theme.of(context).scaffoldBackgroundColor),
-                          boxShadow: [
-                            BoxShadow(
-                                spreadRadius: 1,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.3),
-                                offset: Offset(0, 5))
-                          ],
-                          shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                photourl,
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWL6HWblTMbGEk_9c0lMxbCP_QWE8p_lXotg&usqp=CAU",
                               ))),
                     ),
                     Positioned(
-                        bottom: 0,
-                        right: 0,
+                      left: size / 3,
+                      top: h / 24,
+                      child: Container(
+                        width: 140,
+                        height: 140,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor),
+                            boxShadow: [
+                              BoxShadow(
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: Offset(0, 5))
+                            ],
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                  photourl,
+                                ))),
+                      ),
+                    ),
+                    Positioned(
+                        right: size / 3,
+                        top: h / 5.5,
                         child: Container(
                           height: 40,
                           width: 40,
