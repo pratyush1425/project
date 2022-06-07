@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project/pages/admin/Home/admin_home.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
 
 class AdminSignInPage extends StatefulWidget {
@@ -161,16 +160,11 @@ class AdminSignInPageState extends State<AdminSignInPage> {
                               _formkey.currentState!.validate();
                               _formkey.currentState!.save();
 
-                              if (_password.length > 5 &&
-                                  _email == "admin@gmail.com") {
+                              if (_formkey.currentState!.validate()) {
                                 await singIn(
                                     email: _email, password: _password);
                                 if (FirebaseAuth.instance.currentUser != null) {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AdminHome(),
-                                      ));
+                                  Navigator.pushNamed(context, '/wrapper');
                                 }
                               }
                             }),

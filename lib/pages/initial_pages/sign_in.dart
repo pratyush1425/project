@@ -2,8 +2,15 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/pages/initial_pages/sign_up.dart';
-import 'package:project/pages/user/home_page/home.dart';
+
+final GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -24,7 +31,7 @@ class SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return flag == false
-        ? const SignUpPage()
+        ? SignUpPage()
         : SingleChildScrollView(
             child: Column(
               children: [
@@ -87,18 +94,18 @@ class SignInPageState extends State<SignInPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: EdgeInsets.all(18.0),
                   child: Form(
                     key: _formkey,
                     child: Column(
                       children: <Widget>[
-                        const SizedBox(
+                        SizedBox(
                           height: 20,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.email),
                                 labelText: "Email",
                                 border: OutlineInputBorder(),
@@ -120,7 +127,7 @@ class SignInPageState extends State<SignInPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: TextFormField(
                             decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.password_outlined),
@@ -149,15 +156,15 @@ class SignInPageState extends State<SignInPage> {
                             },
                           ),
                         ),
-                        const SizedBox(height: 25),
+                        SizedBox(height: 25),
                         Text(
                           message,
                           style: TextStyle(
                               color: Color.fromARGB(255, 209, 30, 17)),
                         ),
-                        const SizedBox(height: 25),
+                        SizedBox(height: 25),
                         ElevatedButton(
-                          child: const Text(
+                          child: Text(
                             "             Sign In             ",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
@@ -165,18 +172,10 @@ class SignInPageState extends State<SignInPage> {
                             _formkey.currentState!.validate();
                             _formkey.currentState!.save();
 
-                            if (_email.isNotEmpty &&
-                                _password.length > 5 &&
-                                _email.contains('@') &&
-                                _email.contains('.') &&
-                                _email != "admin@gmail.com") {
+                            if (_formkey.currentState!.validate()) {
                               await singIn(email: _email, password: _password);
                               if (FirebaseAuth.instance.currentUser != null) {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Home(),
-                                    ));
+                                Navigator.pushNamed(context, '/wrapper');
                               }
                             }
                           },
@@ -187,7 +186,22 @@ class SignInPageState extends State<SignInPage> {
                                 flag = false;
                               });
                             },
-                            child: const Text("Create new account")),
+                            child: Text("Create new account")),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          child: Text(
+                            "             Sign In With Google            ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          onPressed: () async {
+                            await _signInWithGoogle();
+
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/wrapper', (route) => false);
+                          },
+                        ),
                       ],
                     ),
                   ),
@@ -217,6 +231,16 @@ class SignInPageState extends State<SignInPage> {
     } catch (e) {
       setState(() {
         message = e.toString();
+      });
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      setState(() {
+        message = error.toString();
       });
     }
   }

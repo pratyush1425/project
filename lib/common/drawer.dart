@@ -2,6 +2,14 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+final GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ],
+);
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -131,10 +139,10 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text("Logout"),
               subtitle: Text("logout from current device"),
-              onTap: (() {
-                signOut();
+              onTap: (() async{
+                await signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                    context, '/', (route) => false);
+                context, '/wrapper', (route) => false);
               }),
             ),
           ],
@@ -145,5 +153,6 @@ class MyDrawer extends StatelessWidget {
 
   Future signOut() async {
     await FirebaseAuth.instance.signOut();
+    await _googleSignIn.signOut();
   }
 }

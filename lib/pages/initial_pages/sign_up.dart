@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:project/pages/user/home_page/home.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -154,17 +153,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           _formkey.currentState!.validate();
                           _formkey.currentState!.save();
 
-                          if (_email.isNotEmpty &&
-                              _password.length > 5 &&
-                              _email.contains('@') &&
-                              _email.contains('.')) {
+                          if (_formkey.currentState!.validate()) {
                             createUser(email: _email, password: _password);
                             if (FirebaseAuth.instance.currentUser != null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Home(),
-                                  ));
+                              Navigator.pushNamed(context, '/wrapper');
                             }
                           }
                         }),

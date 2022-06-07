@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
+import 'package:project/model/user.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -12,33 +13,16 @@ class EditProfile extends StatefulWidget {
 
 class Editprofile extends State<EditProfile> {
   bool showPassword = true;
-  var name = FirebaseAuth.instance.currentUser?.displayName ??
-      "Please update your name";
-  var email = FirebaseAuth.instance.currentUser?.email;
+  var name = Users.studentName;
+  var email = Users.studentEmail;
   var password = "";
-  var phone = FirebaseAuth.instance.currentUser?.phoneNumber ??
-      "Please enter your phone number";
-  var photourl = FirebaseAuth.instance.currentUser?.photoURL ??
-      "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg";
+  var phone = Users.studentPhone;
+  var photourl = Users.studentphotourl;
 
   var address = "DTU, Delhi";
 
   @override
   Widget build(BuildContext context) {
-//     if (FirebaseAuth.instance.currentUser != null) {
-//     for (final providerProfile in FirebaseAuth.instance.currentUser!.providerData) {
-//         // ID of the provider (google.com, apple.cpm, etc.)
-//         final provider = providerProfile.providerId;
-
-//         // UID specific to the provider
-//         final uid = providerProfile.uid;
-
-//         // Name, email address, and profile photo URL
-//         final name = providerProfile.displayName;
-//         final emailAddress = providerProfile.email;
-//         final profilePhoto = providerProfile.photoURL;
-//     }
-// }
     // var size = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(

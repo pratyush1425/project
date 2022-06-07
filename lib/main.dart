@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Project',
-      initialRoute: 'wrapper',
+      initialRoute: '/wrapper',
       routes: {
-        'wrapper': (context) => Wrapper(),
+        '/wrapper': (context) => Wrapper(),
         '/': (context) => InitialPage(),
         '/signup': (context) => SignUpPage(),
         '/signin': (context) => SignInPage(),

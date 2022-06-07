@@ -13,11 +13,11 @@ class AdminDrawer extends StatelessWidget {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text((FirebaseAuth
-                            .instance.currentUser?.displayName !=
-                        null)
-                    ? (FirebaseAuth.instance.currentUser?.displayName).toString()
-                    : "Admin"),
+              accountName: Text(
+                  (FirebaseAuth.instance.currentUser?.displayName != null)
+                      ? (FirebaseAuth.instance.currentUser?.displayName)
+                          .toString()
+                      : "Admin"),
               accountEmail:
                   Text((FirebaseAuth.instance.currentUser?.email).toString()),
               currentAccountPicture: CircleAvatar(
@@ -123,7 +123,7 @@ class AdminDrawer extends StatelessWidget {
               onTap: (() {
                 signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                    context, '/', (route) => false);
+                    context, '/wrapper', (route) => false);
               }),
             ),
           ],
