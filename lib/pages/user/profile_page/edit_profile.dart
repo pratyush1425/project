@@ -25,19 +25,19 @@ class Editprofile extends State<EditProfile> {
     var size = MediaQuery.of(context).size.width;
     var h = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Color.fromARGB(255, 76, 165, 175),
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.pushNamed(context, '/profile');
-          },
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      //   leading: IconButton(
+      //     icon: Icon(
+      //       Icons.arrow_back,
+      //       color: Color.fromARGB(255, 76, 165, 175),
+      //     ),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //       Navigator.pushNamed(context, '/profile');
+      //     },
+      //   ),
+      // ),
       body: Container(
         child: GestureDetector(
           onTap: () {
@@ -45,6 +45,22 @@ class Editprofile extends State<EditProfile> {
           },
           child: ListView(
             children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/profile');
+                },
+                child: Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10.0, top: 10.0),
+                    alignment: Alignment.topLeft,
+                    child: Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 15,
               ),
