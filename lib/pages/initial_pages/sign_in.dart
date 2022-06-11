@@ -20,6 +20,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class SignInPageState extends State<SignInPage> {
+  GoogleSignInAccount? _currentUser;
+
   String _email = "";
   String _password = "";
   bool flag = true;
@@ -197,9 +199,9 @@ class SignInPageState extends State<SignInPage> {
                           ),
                           onPressed: () async {
                             await _signInWithGoogle();
-
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/wrapper', (route) => false);
+                            if (_currentUser != null) {
+                              Navigator.pushNamed(context, '/home');
+                            }
                           },
                         ),
                       ],
@@ -243,5 +245,21 @@ class SignInPageState extends State<SignInPage> {
         message = error.toString();
       });
     }
+  }
+
+  @override
+  void initState() {
+    _googleSignIn.onCurrentUserChanged.listen((account) {
+      setState(() {
+        _currentUser = account;
+      });
+    });
+
+    ini();
+    super.initState();
+  }
+
+  Future<void> ini() async {
+    await _googleSignIn.signInSilently();
   }
 }

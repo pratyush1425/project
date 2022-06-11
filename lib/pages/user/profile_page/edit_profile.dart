@@ -1,21 +1,10 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
-
-QuerySnapshot snapshot = await FirebaseFirestore.instance.collections("Users").get();
-
-  for(var doc in snapshot.docs){
-    log(doc.data().toString());
-  } 
-  runApp(EditProfile());
-}
+Future<QuerySnapshot<Map<String, dynamic>>> snapshot = FirebaseFirestore.instance.collection("Users").get();
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);

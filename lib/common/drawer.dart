@@ -139,10 +139,10 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text("Logout"),
               subtitle: Text("logout from current device"),
-              onTap: (() async{
+              onTap: (() async {
                 await signOut();
                 Navigator.pushNamedAndRemoveUntil(
-                context, '/wrapper', (route) => false);
+                    context, '/wrapper', (route) => false);
               }),
             ),
           ],
