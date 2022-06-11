@@ -25,7 +25,7 @@ class _ProfileState extends State<Profile> {
                 child: Container(
                   margin: const EdgeInsets.only(left: 10.0, top: 10.0),
                   alignment: Alignment.topLeft,
-                  child: Icon(
+                  child: const Icon(
                     Icons.edit,
                     size: 30,
                   ),
@@ -80,7 +80,7 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
             Expanded(
