@@ -3,6 +3,20 @@
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
+
+QuerySnapshot snapshot = await FirebaseFirestore.instance.collections("Users").get();
+
+  for(var doc in snapshot.docs){
+    log(doc.data().toString());
+  } 
+  runApp(EditProfile());
+}
+
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
 
@@ -19,6 +33,9 @@ class Editprofile extends State<EditProfile> {
   var photourl = Users.studentphotourl;
 
   var address = "DTU, Delhi";
+
+
+  
 
   @override
   Widget build(BuildContext context) {
