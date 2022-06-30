@@ -6,6 +6,7 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 List<Users> userFromJson(String str) =>
@@ -14,24 +15,29 @@ List<Users> userFromJson(String str) =>
 String userToJson(List<Users> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+int? id;
+String? name;
+String? email;
+String? address;
+String? phone;
+String? url;
+
 class Users {
   Users({
-    required this.id,
+    this.id,
     required this.name,
-    required this.username,
     required this.email,
     required this.address,
     required this.phone,
     required this.url,
   });
 
-  int id;
-  String name;
-  String username;
-  String email;
-  String address;
-  String phone;
-  String url;
+  int? id;
+  String? name;
+  String? email;
+  String? address;
+  String? phone;
+  String? url;
 
   static final studentid = FirebaseAuth.instance.currentUser?.uid;
   static final studentName = FirebaseAuth.instance.currentUser?.displayName ??
@@ -45,7 +51,6 @@ class Users {
   factory Users.fromJson(Map<String, dynamic> json) => Users(
         id: json["id"],
         name: json["name"],
-        username: json["username"],
         email: json["email"],
         address: json["address"],
         phone: json["phone"],
@@ -55,10 +60,18 @@ class Users {
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
-        "username": username,
         "email": email,
         "address": address,
         "phone": phone,
         "url": url,
       };
+
+  Future createUser(Users user) async {
+    final docuser = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser?.uid);
+    user.id = docuser.id as int?;
+    final json = user.toJson();
+    await docuser.set(json);
+  }
 }
