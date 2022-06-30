@@ -16,9 +16,16 @@ class Events extends StatefulWidget {
 
 class _EventsState extends State<Events> {
   late Map<DateTime, List<Event>> selectedEvents;
-  DateTime? _selectedDay;
+  DateTime _selectedDay = DateTime.now();
   DateTime _focusedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
+
+  final TextEditingController _eventcontroller = TextEditingController();
+  @override
+  void dispose() {
+    _eventcontroller.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -63,6 +70,12 @@ class _EventsState extends State<Events> {
               _focusedDay = focusedDay;
             },
           ),
+          SizedBox(
+            height: 10,
+          ),
+          ..._getEventsfromDay(_selectedDay).map((Event event) => ListTile(
+                title: Text(event.title),
+              ))
         ],
       ),
       bottomNavigationBar: MyBottomBar(),
@@ -71,11 +84,34 @@ class _EventsState extends State<Events> {
             context: context,
             builder: (context) => AlertDialog(
                   title: Text("Add Event"),
-                  content: Text("Enter Title"),
+                  content: TextField(
+                    controller: _eventcontroller,
+                    decoration: InputDecoration(
+                        hintText: "Enter Title", label: Text("Title")),
+                  ),
                   actions: [
                     TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text("OK"))
+                        child: Text("Cancel")),
+                    TextButton(
+                      onPressed: () {
+                        if (_eventcontroller.text.isNotEmpty) {
+                          if (selectedEvents[_selectedDay] == null) {
+                            selectedEvents[_selectedDay] = [
+                              Event(title: _eventcontroller.text)
+                            ];
+                          } else {
+                            selectedEvents[_selectedDay]
+                                ?.add(Event(title: _eventcontroller.text));
+                          }
+                        }
+                        Navigator.pop(context);
+                        _eventcontroller.clear();
+                        setState(() {});
+                        return;
+                      },
+                      child: Text("Ok"),
+                    )
                   ],
                 )),
         label: Text("Add Event"),
