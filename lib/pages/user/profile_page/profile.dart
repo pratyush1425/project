@@ -55,7 +55,7 @@ class _ProfileState extends State<Profile> {
                       image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: NetworkImage(
-                          "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg",
+                          "https://dribbble.com/tags/face",
                         ),
                       ),
                     ),

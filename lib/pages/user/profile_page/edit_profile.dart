@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'dart:async';
+// import 'dart:html';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
-
-Future<QuerySnapshot<Map<String, dynamic>>> snapshot = FirebaseFirestore.instance.collection("Users").get();
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -19,12 +21,13 @@ class Editprofile extends State<EditProfile> {
   var email = Users.studentEmail;
   var password = "";
   var phone = Users.studentPhone;
-  var photourl = Users.studentphotourl;
-
+  // var photourl = Users.studentphotourl;
+  var photourl = 'https://dribbble.com/tags/face';
   var address = "DTU, Delhi";
 
-
-  
+  final controllername = TextEditingController();
+  final controllernumber = TextEditingController();
+  final controlleraddress = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class Editprofile extends State<EditProfile> {
         children: [
           GestureDetector(
             onTap: () {
+              // getData();
               Navigator.pop(context);
               Navigator.pushNamed(context, '/profile');
             },
@@ -111,11 +115,11 @@ class Editprofile extends State<EditProfile> {
           SizedBox(
             height: 40,
           ),
-          buildTextField("Full Name", name, false),
-          buildTextField("E-mail", email, false),
-          buildTextField("Password", password, true),
-          buildTextField("Phone", phone, false),
-          buildTextField("Address", address, false),
+          buildTextField("Full Name", name, false, controllername),
+          // buildTextField("E-mail", email, false),
+          // buildTextField("Password", password, true),
+          buildTextField("Phone", phone, false, controllernumber),
+          buildTextField("Address", address, false, controlleraddress),
           SizedBox(
             height: 50,
           ),
@@ -148,13 +152,16 @@ class Editprofile extends State<EditProfile> {
                 width: 120,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () async {
-                    // await FirebaseAuth.instance.currentUser?.updateDisplayName("Jane Q. User");
-                    // await FirebaseAuth.instance.currentUser?.updateEmail("janeq@example.com");
-                    // await FirebaseAuth.instance.currentUser?.sendEmailVerification();
-                    // await FirebaseAuth.instance.currentUser?.updatePhoneNumber(phoneCredential);
-                    // await FirebaseAuth.instance.currentUser?.verifyBeforeUpdateEmail(newEmail);
-                    //
+                  onPressed: () {
+                    final docUser = FirebaseFirestore.instance
+                        .collection("users")
+                        .doc(FirebaseAuth.instance.currentUser?.uid);
+
+                    docUser.update({
+                      'name': controllername,
+                      'phone': controllernumber,
+                      'address': controlleraddress,
+                    });
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -175,10 +182,12 @@ class Editprofile extends State<EditProfile> {
     );
   }
 
-  Widget buildTextField(labelText, placeholder, isPasswordTextField) {
+  Widget buildTextField(labelText, placeholder, isPasswordTextField,
+      TextEditingController mycontroller) {
     return Padding(
       padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
       child: TextField(
+        controller: mycontroller,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
