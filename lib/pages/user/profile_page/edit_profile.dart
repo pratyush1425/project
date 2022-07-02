@@ -21,13 +21,12 @@ class Editprofile extends State<EditProfile> {
   var email = Users.studentEmail;
   var password = "";
   var phone = Users.studentPhone;
-  // var photourl = Users.studentphotourl;
-  var photourl = 'https://dribbble.com/tags/face';
+  var photourl = Users.studentphotourl;
   var address = "DTU, Delhi";
 
-  final controllername = TextEditingController();
-  final controllernumber = TextEditingController();
-  final controlleraddress = TextEditingController();
+  TextEditingController controllername = TextEditingController();
+  TextEditingController controllernumber = TextEditingController();
+  TextEditingController controlleraddress = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,35 +35,31 @@ class Editprofile extends State<EditProfile> {
     return Scaffold(
       body: ListView(
         children: [
-          GestureDetector(
-            onTap: () {
-              // getData();
-              Navigator.pop(context);
-              Navigator.pushNamed(context, '/profile');
-            },
-            child: Expanded(
-              child: Container(
-                margin:
-                    const EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
-                alignment: Alignment.topLeft,
-                child: Icon(
+          Container(
+            margin: EdgeInsets.only(left: 10.0, top: 10.0, bottom: 10.0),
+            alignment: Alignment.topLeft,
+            child: IconButton(
+                onPressed: () {
+                  // getData();
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/profile');
+                },
+                icon: Icon(
                   Icons.arrow_back,
                   size: 30,
-                ),
-              ),
-            ),
+                )),
           ),
           Stack(
             children: [
               Container(
                 width: size,
                 height: 200,
+                //color: Colors.red,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWL6HWblTMbGEk_9c0lMxbCP_QWE8p_lXotg&usqp=CAU",
-                        ))),
+                  fit: BoxFit.cover,
+                  image: AssetImage('assets/images/background2.jpg'),
+                )),
               ),
               Positioned(
                 left: size / 3,
@@ -73,22 +68,22 @@ class Editprofile extends State<EditProfile> {
                   width: 140,
                   height: 140,
                   decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 4,
-                          color: Theme.of(context).scaffoldBackgroundColor),
-                      boxShadow: [
-                        BoxShadow(
-                            spreadRadius: 1,
-                            blurRadius: 10,
-                            color: Colors.black.withOpacity(0.3),
-                            offset: Offset(0, 5))
-                      ],
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            photourl,
-                          ))),
+                    border: Border.all(
+                        width: 4,
+                        color: Theme.of(context).scaffoldBackgroundColor),
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: 1,
+                          blurRadius: 10,
+                          color: Colors.black.withOpacity(0.3),
+                          offset: Offset(0, 5))
+                    ],
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(photourl),
+                    ),
+                  ),
                 ),
               ),
               Positioned(

@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:project/model/user.dart';
 
 final GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: [
@@ -17,22 +18,14 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(
-                  (FirebaseAuth.instance.currentUser?.displayName != null)
-                      ? (FirebaseAuth.instance.currentUser?.displayName)
-                          .toString()
-                      : "Update your name in Profile section"),
-              accountEmail:
-                  Text((FirebaseAuth.instance.currentUser?.email).toString()),
+              accountName: Text(Users.studentName),
+              accountEmail: Text(Users.studentEmail),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage((FirebaseAuth
-                            .instance.currentUser?.photoURL !=
-                        null)
-                    ? (FirebaseAuth.instance.currentUser?.photoURL).toString()
-                    : "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599"),
+                backgroundImage: NetworkImage(Users.studentphotourl),
               ),
               onDetailsPressed: () {},
             ),

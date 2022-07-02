@@ -19,6 +19,7 @@ class Home extends StatelessWidget {
       ),
       drawer: MyDrawer(),
       body: ListView(
+        physics: BouncingScrollPhysics(),
         children: const [
           SizedBox(
             height: 20,

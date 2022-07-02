@@ -42,11 +42,12 @@ class Users {
   static final studentid = FirebaseAuth.instance.currentUser?.uid;
   static final studentName = FirebaseAuth.instance.currentUser?.displayName ??
       "Please update your name";
-  static final studentEmail = FirebaseAuth.instance.currentUser?.email;
+  static final studentEmail =
+      FirebaseAuth.instance.currentUser?.email ?? "email not found";
   static final studentPhone = FirebaseAuth.instance.currentUser?.phoneNumber ??
       "Please enter your phone number";
   static final studentphotourl = FirebaseAuth.instance.currentUser?.photoURL ??
-      "https://cdn.technosports.co.in/wp-content/uploads/2021/11/Aishwarya-Rai-Bachchan-2-980x1024.jpg";
+      "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599";
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
         id: json["id"],

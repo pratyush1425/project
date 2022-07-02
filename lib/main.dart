@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         '/signin': (context) => SignInPage(),
         '/home': (context) => Home(),
         '/event': (context) => Events(),
-        '/attendance': (context) => Attendance(),
+        '/attendance': (context) => Attendance(title: 'Flutter Hello World',),
         '/results': (context) => Results(),
         '/profile': (context) => Profile(),
         '/edit_profile': (context) => EditProfile(),
