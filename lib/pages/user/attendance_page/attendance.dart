@@ -30,47 +30,49 @@ class _AttendanceState extends State<Attendance> {
         title: Text("Attendance"),
       ),
       drawer: MyDrawer(),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            SizedBox(height: 35),
-            DropdownButton<String>(
-              value: value,
-              items: items.map(buildMenuItem).toList(),
-              onChanged: (value) => setState(() => this.value = value),
-            ),
-            SizedBox(height: 40),
-            Expanded(
-              child: Center(
-                child: Container(
-                  height: 400,
-                  width: 400,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 2, color: Color.fromARGB(156, 206, 206, 206)),
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                  child: SfCircularChart(
-                    title: ChartTitle(
-                        text: 'Number of classes \n (Attended , Not attended)'),
-                    legend: Legend(
-                        isVisible: true,
-                        overflowMode: LegendItemOverflowMode.wrap),
-                    series: <CircularSeries>[
-                      DoughnutSeries<GDPData, String>(
-                          dataSource: _chartData,
-                          xValueMapper: (GDPData data, _) => data.status,
-                          yValueMapper: (GDPData data, _) => data.gdp,
-                          dataLabelSettings: DataLabelSettings(isVisible: true))
-                    ],
-                  ),
+      body:
+          //  SingleChildScrollView(
+          //   physics: BouncingScrollPhysics(),
+          //   child:
+          Column(
+        children: [
+          SizedBox(height: 35),
+          DropdownButton<String>(
+            value: value,
+            items: items.map(buildMenuItem).toList(),
+            onChanged: (value) => setState(() => this.value = value),
+          ),
+          SizedBox(height: 40),
+          Expanded(
+            child: Center(
+              child: Container(
+                height: 400,
+                width: 400,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 2, color: Color.fromARGB(156, 206, 206, 206)),
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                ),
+                child: SfCircularChart(
+                  title: ChartTitle(
+                      text: 'Number of classes \n (Attended , Not attended)'),
+                  legend: Legend(
+                      isVisible: true,
+                      overflowMode: LegendItemOverflowMode.wrap),
+                  series: <CircularSeries>[
+                    DoughnutSeries<GDPData, String>(
+                        dataSource: _chartData,
+                        xValueMapper: (GDPData data, _) => data.status,
+                        yValueMapper: (GDPData data, _) => data.gdp,
+                        dataLabelSettings: DataLabelSettings(isVisible: true))
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
+      // ),
       extendBody: true,
     );
   }
