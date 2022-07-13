@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'fun.dart';
+
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
 
@@ -148,15 +150,16 @@ class Editprofile extends State<EditProfile> {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    final docUser = FirebaseFirestore.instance
-                        .collection("users")
-                        .doc(FirebaseAuth.instance.currentUser?.uid);
+                    // final docUser = FirebaseFirestore.instance
+                    //     .collection("users")
+                    //     .doc(FirebaseAuth.instance.currentUser?.uid);
 
-                    docUser.update({
-                      'name': controllername,
-                      'phone': controllernumber,
-                      'address': controlleraddress,
-                    });
+                    // docUser.update({
+                    //   'name': controllername,
+                    //   'phone': controllernumber,
+                    //   'address': controlleraddress,
+                    // });
+                    update('users', 'Oo6H4LBvy2N6KhsoKcuf', 'name', 'new name');
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
