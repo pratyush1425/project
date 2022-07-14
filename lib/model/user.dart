@@ -15,12 +15,15 @@ List<Users> userFromJson(String str) =>
 String userToJson(List<Users> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+
 int? id;
 String? name;
 String? email;
 String? address;
 String? phone;
 String? url;
+
+FirebaseFirestore db = FirebaseFirestore.instance;
 
 class Users {
   Users({
@@ -49,6 +52,8 @@ class Users {
   static final studentphotourl = FirebaseAuth.instance.currentUser?.photoURL ??
       "https://media.vanityfair.com/photos/5fcfd7bde9fd5209684824fd/master/w_2560%2Cc_limit/1178141599";
 
+
+
   factory Users.fromJson(Map<String, dynamic> json) => Users(
         id: json["id"],
         name: json["name"],
@@ -73,6 +78,8 @@ class Users {
         .doc(FirebaseAuth.instance.currentUser?.uid);
     user.id = docuser.id as int?;
     final json = user.toJson();
-    await docuser.set(json);
+    // ignore: avoid_print
+    await docuser.set(json).onError((e, _) => print("Error writing document: $e"));
   }
+
 }

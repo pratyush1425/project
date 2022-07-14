@@ -3,10 +3,10 @@
 // import 'dart:async';
 // import 'dart:html';
 
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/model/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'fun.dart';
 
@@ -25,10 +25,7 @@ class Editprofile extends State<EditProfile> {
   var phone = Users.studentPhone;
   var photourl = Users.studentphotourl;
   var address = "DTU, Delhi";
-
-  TextEditingController controllername = TextEditingController();
-  TextEditingController controllernumber = TextEditingController();
-  TextEditingController controlleraddress = TextEditingController();
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -112,11 +109,90 @@ class Editprofile extends State<EditProfile> {
           SizedBox(
             height: 40,
           ),
-          buildTextField("Full Name", name, false, controllername),
+          Form(
+            key: _formkey,
+            child: Column(
+              children: [
+                // buildTextField("Full Name", name, false, _name),
+                // buildTextField("Phone", phone, false, phone),
+                // buildTextField("Address", address, false, address),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(bottom: 3),
+                        labelText: "Full Name",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        hintText: "Name",
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 75, 75, 75),
+                        )),
+                    onSaved: (value) {
+                      setState(() {
+                        name = value!;
+                      });
+                    },
+                    validator: (value) {
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(bottom: 3),
+                        labelText: "Email",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        hintText: "Email",
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 75, 75, 75),
+                        )),
+                    onSaved: (value) {
+                      setState(() {
+                        email = value!;
+                      });
+                    },
+                    validator: (value) {
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(bottom: 3),
+                        labelText: "Full Name",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        hintText: "Name",
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 75, 75, 75),
+                        )),
+                    onSaved: (value) {
+                      setState(() {
+                        name = value!;
+                      });
+                    },
+                    validator: (value) {
+                      return null;
+                    },
+                  ),
+                )
+
+              ],
+            ),
+          ),
+
           // buildTextField("E-mail", email, false),
           // buildTextField("Password", password, true),
-          buildTextField("Phone", phone, false, controllernumber),
-          buildTextField("Address", address, false, controlleraddress),
+
           SizedBox(
             height: 50,
           ),
@@ -159,7 +235,10 @@ class Editprofile extends State<EditProfile> {
                     //   'phone': controllernumber,
                     //   'address': controlleraddress,
                     // });
-                    update('users', 'Oo6H4LBvy2N6KhsoKcuf', 'name', 'new name');
+                    // _formkey.currentState!.validate();
+                    _formkey.currentState!.save();
+
+                    update('users', 'HDCuSop8ZUmzKwbATyh3', 'name', name);
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -180,36 +259,43 @@ class Editprofile extends State<EditProfile> {
     );
   }
 
-  Widget buildTextField(labelText, placeholder, isPasswordTextField,
-      TextEditingController mycontroller) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
-      child: TextField(
-        controller: mycontroller,
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showPassword = !showPassword;
-                      });
-                    },
-                    icon: showPassword
-                        ? Icon(Icons.visibility)
-                        : Icon(Icons.visibility_off),
-                  )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 75, 75, 75),
-            )),
-      ),
-    );
-  }
-}
+//   Widget buildTextField(
+//       labelText, placeholder, isPasswordTextField, updationField) {
+//     return Padding(
+//       padding: EdgeInsets.only(bottom: 35.0, left: 16, right: 16),
+//       child: TextFormField(
+//         obscureText: isPasswordTextField ? showPassword : false,
+//         decoration: InputDecoration(
+//             suffixIcon: isPasswordTextField
+//                 ? IconButton(
+//                     onPressed: () {
+//                       setState(() {
+//                         showPassword = !showPassword;
+//                       });
+//                     },
+//                     icon: showPassword
+//                         ? Icon(Icons.visibility)
+//                         : Icon(Icons.visibility_off),
+//                   )
+//                 : null,
+//             contentPadding: EdgeInsets.only(bottom: 3),
+//             labelText: labelText,
+//             floatingLabelBehavior: FloatingLabelBehavior.always,
+//             hintText: placeholder,
+//             hintStyle: TextStyle(
+//               fontSize: 16,
+//               fontWeight: FontWeight.bold,
+//               color: Color.fromARGB(255, 75, 75, 75),
+//             )),
+//         onSaved: (value) {
+//           setState(() {
+//             updationField = value!;
+//           });
+//         },
+//         validator: (value) {
+//           return null;
+//         },
+//       ),
+//     );
+//   }
+ }

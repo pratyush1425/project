@@ -6,5 +6,6 @@ update(String collName, docName, field, var newFieldValue) async {
       .collection(collName)
       .doc(docName)
       .update({field: newFieldValue});
+  // ignore: avoid_print
   print('Fields Updated');
 }

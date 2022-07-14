@@ -108,10 +108,11 @@ class SignInPageState extends State<SignInPage> {
                           padding: EdgeInsets.all(8.0),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                prefixIcon: Icon(Icons.email),
-                                labelText: "Email",
-                                border: OutlineInputBorder(),
-                                hintText: "Enter your email"),
+                              prefixIcon: Icon(Icons.email),
+                              labelText: "Email",
+                              border: OutlineInputBorder(),
+                              hintText: "Enter your email",
+                            ),
                             validator: (value) {
                               if (value!.isEmpty ||
                                   !value.contains('@') ||
